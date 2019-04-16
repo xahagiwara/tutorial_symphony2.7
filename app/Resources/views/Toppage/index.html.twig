@@ -4,7 +4,13 @@
 <body>
     <div>
         <h1>クラシックシンフォニー楽団のページへようこそ！</h1>
-        <h2>お知らせ</h2>
+
+        <!--お知らせ部品の埋め込み-->
+        {{ include("Common/infomation.html.twig") }}
+        <p><a href="{{ path("app_concert_index") }}">公演情報はこちら</a></p>
+
+        <!--新着ブログリストを埋め込む-->
+        {{ render(controller("AppBundle:Blog:latestList")) }}
 
         <!--
             カッコで囲んだ場所を変数として認識
@@ -15,7 +21,6 @@
             php app/console debug:router で確認
             path("自動生成パス")
         -->
-        <p><a href="{{ path("app_concert_index") }}">{{ information }}</a></p>
-    </div>    
+    </div>
 </body>
 </html>
