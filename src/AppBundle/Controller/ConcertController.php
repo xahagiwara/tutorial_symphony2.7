@@ -14,15 +14,18 @@ class ConcertController extends Controller{
             [
                 'data' => '2015年5月3日',
                 'time' => '14:00',
-                'place' => '東京文化会館（満席）'
+                'place' => '東京文化会館（満席）',
+                'available' => 'false'
             ],[
                 'data' => '2015年7月12日',
                 'time' => '14:00',
-                'place' => '鎌倉芸術館'
+                'place' => '鎌倉芸術館',
+                'available' => 'true'
             ],[
                 'data' => '2015年9月20日',
                 'time' => '15:00',
-                'place' => '横浜みなとみらいホール'
+                'place' => '横浜みなとみらいホール',
+                'available' => 'true'
             ]
         ];
 
