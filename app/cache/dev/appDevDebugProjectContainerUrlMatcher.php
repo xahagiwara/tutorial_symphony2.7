@@ -161,7 +161,7 @@ class appDevDebugProjectContainerUrlMatcher extends Symfony\Bundle\FrameworkBund
         not_homepage:
 
         // app_toppage_index
-        if ('/home' === rtrim($pathinfo, '/')) {
+        if ('/a' === rtrim($pathinfo, '/')) {
             if ('/' === substr($pathinfo, -1)) {
                 // no-op
             } elseif (!in_array($this->context->getMethod(), array('HEAD', 'GET'))) {
