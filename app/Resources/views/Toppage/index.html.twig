@@ -1,0 +1,21 @@
+<html>
+<head>
+</head>
+<body>
+    <div>
+        <h1>クラシックシンフォニー楽団のページへようこそ！</h1>
+        <h2>お知らせ</h2>
+
+        <!--
+            カッコで囲んだ場所を変数として認識
+            コメント中であっても判定しているので注意
+        -->
+
+        <!--パス名はsymphonyが自動生成している
+            php app/console debug:router で確認
+            path("自動生成パス")
+        -->
+        <p><a href="{{ path("app_concert_index") }}">{{ information }}</a></p>
+    </div>    
+</body>
+</html>
