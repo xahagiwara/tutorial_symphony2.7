@@ -2,4 +2,4 @@ _assetic:
     resource: .
     type: assetic
 _app:
-    resource: '/Users/xearts/Desktop/Hagiwara Shion/tutorial_symphony2.7/app/config/routing_dev.yml'
+    resource: 'C:\Users\user\Desktop\my_project_name\app/config/routing_dev.yml'
