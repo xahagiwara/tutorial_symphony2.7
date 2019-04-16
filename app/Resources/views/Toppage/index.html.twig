@@ -10,7 +10,12 @@
             カッコで囲んだ場所を変数として認識
             コメント中であっても判定しているので注意
         -->
-        <p>{{ information }}</p>
+
+        <!--パス名はsymphonyが自動生成している
+            php app/console debug:router で確認
+            path("自動生成パス")
+        -->
+        <p><a href="{{ path("app_concert_index") }}">{{ information }}</a></p>
     </div>    
 </body>
 </html>
