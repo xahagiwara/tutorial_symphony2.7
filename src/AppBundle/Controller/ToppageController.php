@@ -8,4 +8,10 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 
 class ToppageController extends Controller
 {
+    /**
+     * @Route("/")
+     */
+    public function indexAction(){
+    
+    }
 }
