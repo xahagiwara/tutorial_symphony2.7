@@ -11,6 +11,9 @@ class ToppageController extends Controller
      * @Route("/home/")
      */
     public function indexAction(){
-        return $this->render('Toppage/index.html.twig');
+        $information = "5月と6月の公園情報を追加しました。";
+
+        return $this->render('Toppage/index.html.twig',
+            ['information' => $information]);
     }
 }
