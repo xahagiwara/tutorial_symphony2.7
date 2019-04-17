@@ -8,7 +8,7 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 class ToppageController extends Controller
 {
     /**
-     * @Route("/home/")
+     * @Route("/")
      */
     public function indexAction(){
         $information = "5月と6月の公園情報を追加しました。";
