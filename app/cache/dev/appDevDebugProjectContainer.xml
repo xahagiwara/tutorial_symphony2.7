@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <container xmlns="http://symfony.com/schema/dic/services" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
   <parameters>
-    <parameter key="kernel.root_dir">C:\Users\user\Desktop\my_project_name\app</parameter>
+    <parameter key="kernel.root_dir">/Users/xearts/Desktop/Hagiwara Shion/tutorial_symphony2.7/app</parameter>
     <parameter key="kernel.environment">dev</parameter>
     <parameter key="kernel.debug">true</parameter>
     <parameter key="kernel.name">app</parameter>
-    <parameter key="kernel.cache_dir">C:\Users\user\Desktop\my_project_name\app\cache\dev</parameter>
-    <parameter key="kernel.logs_dir">C:\Users\user\Desktop\my_project_name\app\logs</parameter>
+    <parameter key="kernel.cache_dir">/Users/xearts/Desktop/Hagiwara Shion/tutorial_symphony2.7/app/cache/dev</parameter>
+    <parameter key="kernel.logs_dir">/Users/xearts/Desktop/Hagiwara Shion/tutorial_symphony2.7/app/logs</parameter>
     <parameter key="kernel.bundles" type="collection">
       <parameter key="FrameworkBundle">Symfony\Bundle\FrameworkBundle\FrameworkBundle</parameter>
       <parameter key="SecurityBundle">Symfony\Bundle\SecurityBundle\SecurityBundle</parameter>
@@ -25,67 +25,67 @@
     <parameter key="kernel.bundles_metadata" type="collection">
       <parameter key="FrameworkBundle" type="collection">
         <parameter key="parent">null</parameter>
-        <parameter key="path">C:\Users\user\Desktop\my_project_name\vendor\symfony\symfony\src\Symfony\Bundle\FrameworkBundle</parameter>
+        <parameter key="path">/Users/xearts/Desktop/Hagiwara Shion/tutorial_symphony2.7/vendor/symfony/symfony/src/Symfony/Bundle/FrameworkBundle</parameter>
         <parameter key="namespace">Symfony\Bundle\FrameworkBundle</parameter>
       </parameter>
       <parameter key="SecurityBundle" type="collection">
         <parameter key="parent">null</parameter>
-        <parameter key="path">C:\Users\user\Desktop\my_project_name\vendor\symfony\symfony\src\Symfony\Bundle\SecurityBundle</parameter>
+        <parameter key="path">/Users/xearts/Desktop/Hagiwara Shion/tutorial_symphony2.7/vendor/symfony/symfony/src/Symfony/Bundle/SecurityBundle</parameter>
         <parameter key="namespace">Symfony\Bundle\SecurityBundle</parameter>
       </parameter>
       <parameter key="TwigBundle" type="collection">
         <parameter key="parent">null</parameter>
-        <parameter key="path">C:\Users\user\Desktop\my_project_name\vendor\symfony\symfony\src\Symfony\Bundle\TwigBundle</parameter>
+        <parameter key="path">/Users/xearts/Desktop/Hagiwara Shion/tutorial_symphony2.7/vendor/symfony/symfony/src/Symfony/Bundle/TwigBundle</parameter>
         <parameter key="namespace">Symfony\Bundle\TwigBundle</parameter>
       </parameter>
       <parameter key="MonologBundle" type="collection">
         <parameter key="parent">null</parameter>
-        <parameter key="path">C:\Users\user\Desktop\my_project_name\vendor\symfony\monolog-bundle</parameter>
+        <parameter key="path">/Users/xearts/Desktop/Hagiwara Shion/tutorial_symphony2.7/vendor/symfony/monolog-bundle</parameter>
         <parameter key="namespace">Symfony\Bundle\MonologBundle</parameter>
       </parameter>
       <parameter key="SwiftmailerBundle" type="collection">
         <parameter key="parent">null</parameter>
-        <parameter key="path">C:\Users\user\Desktop\my_project_name\vendor\symfony\swiftmailer-bundle</parameter>
+        <parameter key="path">/Users/xearts/Desktop/Hagiwara Shion/tutorial_symphony2.7/vendor/symfony/swiftmailer-bundle</parameter>
         <parameter key="namespace">Symfony\Bundle\SwiftmailerBundle</parameter>
       </parameter>
       <parameter key="AsseticBundle" type="collection">
         <parameter key="parent">null</parameter>
-        <parameter key="path">C:\Users\user\Desktop\my_project_name\vendor\symfony\assetic-bundle</parameter>
+        <parameter key="path">/Users/xearts/Desktop/Hagiwara Shion/tutorial_symphony2.7/vendor/symfony/assetic-bundle</parameter>
         <parameter key="namespace">Symfony\Bundle\AsseticBundle</parameter>
       </parameter>
       <parameter key="DoctrineBundle" type="collection">
         <parameter key="parent">null</parameter>
-        <parameter key="path">C:\Users\user\Desktop\my_project_name\vendor\doctrine\doctrine-bundle</parameter>
+        <parameter key="path">/Users/xearts/Desktop/Hagiwara Shion/tutorial_symphony2.7/vendor/doctrine/doctrine-bundle</parameter>
         <parameter key="namespace">Doctrine\Bundle\DoctrineBundle</parameter>
       </parameter>
       <parameter key="SensioFrameworkExtraBundle" type="collection">
         <parameter key="parent">null</parameter>
-        <parameter key="path">C:\Users\user\Desktop\my_project_name\vendor\sensio\framework-extra-bundle</parameter>
+        <parameter key="path">/Users/xearts/Desktop/Hagiwara Shion/tutorial_symphony2.7/vendor/sensio/framework-extra-bundle</parameter>
         <parameter key="namespace">Sensio\Bundle\FrameworkExtraBundle</parameter>
       </parameter>
       <parameter key="AppBundle" type="collection">
         <parameter key="parent">null</parameter>
-        <parameter key="path">C:\Users\user\Desktop\my_project_name\src\AppBundle</parameter>
+        <parameter key="path">/Users/xearts/Desktop/Hagiwara Shion/tutorial_symphony2.7/src/AppBundle</parameter>
         <parameter key="namespace">AppBundle</parameter>
       </parameter>
       <parameter key="DebugBundle" type="collection">
         <parameter key="parent">null</parameter>
-        <parameter key="path">C:\Users\user\Desktop\my_project_name\vendor\symfony\symfony\src\Symfony\Bundle\DebugBundle</parameter>
+        <parameter key="path">/Users/xearts/Desktop/Hagiwara Shion/tutorial_symphony2.7/vendor/symfony/symfony/src/Symfony/Bundle/DebugBundle</parameter>
         <parameter key="namespace">Symfony\Bundle\DebugBundle</parameter>
       </parameter>
       <parameter key="WebProfilerBundle" type="collection">
         <parameter key="parent">null</parameter>
-        <parameter key="path">C:\Users\user\Desktop\my_project_name\vendor\symfony\symfony\src\Symfony\Bundle\WebProfilerBundle</parameter>
+        <parameter key="path">/Users/xearts/Desktop/Hagiwara Shion/tutorial_symphony2.7/vendor/symfony/symfony/src/Symfony/Bundle/WebProfilerBundle</parameter>
         <parameter key="namespace">Symfony\Bundle\WebProfilerBundle</parameter>
       </parameter>
       <parameter key="SensioDistributionBundle" type="collection">
         <parameter key="parent">null</parameter>
-        <parameter key="path">C:\Users\user\Desktop\my_project_name\vendor\sensio\distribution-bundle\Sensio\Bundle\DistributionBundle</parameter>
+        <parameter key="path">/Users/xearts/Desktop/Hagiwara Shion/tutorial_symphony2.7/vendor/sensio/distribution-bundle/Sensio/Bundle/DistributionBundle</parameter>
         <parameter key="namespace">Sensio\Bundle\DistributionBundle</parameter>
       </parameter>
       <parameter key="SensioGeneratorBundle" type="collection">
         <parameter key="parent">null</parameter>
-        <parameter key="path">C:\Users\user\Desktop\my_project_name\vendor\sensio\generator-bundle\Sensio\Bundle\GeneratorBundle</parameter>
+        <parameter key="path">/Users/xearts/Desktop/Hagiwara Shion/tutorial_symphony2.7/vendor/sensio/generator-bundle/Sensio/Bundle/GeneratorBundle</parameter>
         <parameter key="namespace">Sensio\Bundle\GeneratorBundle</parameter>
       </parameter>
     </parameter>
@@ -95,11 +95,11 @@
     <parameter key="database_port">null</parameter>
     <parameter key="database_name">symfony</parameter>
     <parameter key="database_user">root</parameter>
-    <parameter key="database_password">null</parameter>
-    <parameter key="mailer_transport">smtp</parameter>
-    <parameter key="mailer_host">127.0.0.1</parameter>
-    <parameter key="mailer_user">null</parameter>
-    <parameter key="mailer_password">null</parameter>
+    <parameter key="database_password">password</parameter>
+    <parameter key="mailer_transport">gmail</parameter>
+    <parameter key="mailer_host">null</parameter>
+    <parameter key="mailer_user">shionn35@gmail.com</parameter>
+    <parameter key="mailer_password">shionn35</parameter>
     <parameter key="secret">ThisTokenIsNotSoSecretChangeIt</parameter>
     <parameter key="locale">en</parameter>
     <parameter key="controller_resolver.class">Symfony\Bundle\FrameworkBundle\Controller\ControllerResolver</parameter>
@@ -168,7 +168,7 @@
     <parameter key="session.storage.options" type="collection">
       <parameter key="gc_probability">1</parameter>
     </parameter>
-    <parameter key="session.save_path">C:\Users\user\Desktop\my_project_name\app\cache\dev/sessions</parameter>
+    <parameter key="session.save_path">/Users/xearts/Desktop/Hagiwara Shion/tutorial_symphony2.7/app/cache/dev/sessions</parameter>
     <parameter key="session.metadata.update_threshold">0</parameter>
     <parameter key="security.secure_random.class">Symfony\Component\Security\Core\Util\SecureRandom</parameter>
     <parameter key="form.resolved_type_factory.class">Symfony\Component\Form\ResolvedFormTypeFactory</parameter>
@@ -225,7 +225,7 @@
     <parameter key="data_collector.form.extractor.class">Symfony\Component\Form\Extension\DataCollector\FormDataExtractor</parameter>
     <parameter key="profiler_listener.only_exceptions">false</parameter>
     <parameter key="profiler_listener.only_master_requests">false</parameter>
-    <parameter key="profiler.storage.dsn">file:C:\Users\user\Desktop\my_project_name\app\cache\dev/profiler</parameter>
+    <parameter key="profiler.storage.dsn">file:/Users/xearts/Desktop/Hagiwara Shion/tutorial_symphony2.7/app/cache/dev/profiler</parameter>
     <parameter key="profiler.storage.username"></parameter>
     <parameter key="profiler.storage.password"></parameter>
     <parameter key="profiler.storage.lifetime">86400</parameter>
@@ -249,7 +249,7 @@
     <parameter key="router.request_context.host">localhost</parameter>
     <parameter key="router.request_context.scheme">http</parameter>
     <parameter key="router.request_context.base_url"></parameter>
-    <parameter key="router.resource">C:\Users\user\Desktop\my_project_name\app\cache\dev/assetic/routing.yml</parameter>
+    <parameter key="router.resource">/Users/xearts/Desktop/Hagiwara Shion/tutorial_symphony2.7/app/config/routing_dev.yml</parameter>
     <parameter key="router.cache_class_prefix">appDevDebugProjectContainer</parameter>
     <parameter key="request_listener.http_port">80</parameter>
     <parameter key="request_listener.https_port">443</parameter>
@@ -261,7 +261,7 @@
     <parameter key="debug.stopwatch.class">Symfony\Component\Stopwatch\Stopwatch</parameter>
     <parameter key="debug.error_handler.throw_at">-1</parameter>
     <parameter key="debug.event_dispatcher.class">Symfony\Component\HttpKernel\Debug\TraceableEventDispatcher</parameter>
-    <parameter key="debug.container.dump">C:\Users\user\Desktop\my_project_name\app\cache\dev/appDevDebugProjectContainer.xml</parameter>
+    <parameter key="debug.container.dump">/Users/xearts/Desktop/Hagiwara Shion/tutorial_symphony2.7/app/cache/dev/appDevDebugProjectContainer.xml</parameter>
     <parameter key="debug.controller_resolver.class">Symfony\Component\HttpKernel\Controller\TraceableControllerResolver</parameter>
     <parameter key="security.context.class">Symfony\Component\Security\Core\SecurityContext</parameter>
     <parameter key="security.user_checker.class">Symfony\Component\Security\Core\User\UserChecker</parameter>
@@ -393,22 +393,26 @@
     <parameter key="swiftmailer.email_sender.listener.class">Symfony\Bundle\SwiftmailerBundle\EventListener\EmailSenderListener</parameter>
     <parameter key="swiftmailer.data_collector.class">Symfony\Bundle\SwiftmailerBundle\DataCollector\MessageDataCollector</parameter>
     <parameter key="swiftmailer.mailer.default.transport.name">smtp</parameter>
-    <parameter key="swiftmailer.mailer.default.transport.smtp.encryption">null</parameter>
-    <parameter key="swiftmailer.mailer.default.transport.smtp.port">25</parameter>
-    <parameter key="swiftmailer.mailer.default.transport.smtp.host">127.0.0.1</parameter>
-    <parameter key="swiftmailer.mailer.default.transport.smtp.username">null</parameter>
-    <parameter key="swiftmailer.mailer.default.transport.smtp.password">null</parameter>
-    <parameter key="swiftmailer.mailer.default.transport.smtp.auth_mode">null</parameter>
+    <parameter key="swiftmailer.mailer.default.transport.smtp.encryption">ssl</parameter>
+    <parameter key="swiftmailer.mailer.default.transport.smtp.port">465</parameter>
+    <parameter key="swiftmailer.mailer.default.transport.smtp.host">smtp.gmail.com</parameter>
+    <parameter key="swiftmailer.mailer.default.transport.smtp.username">shionn35@gmail.com</parameter>
+    <parameter key="swiftmailer.mailer.default.transport.smtp.password">shionn35</parameter>
+    <parameter key="swiftmailer.mailer.default.transport.smtp.auth_mode">login</parameter>
     <parameter key="swiftmailer.mailer.default.transport.smtp.timeout">30</parameter>
     <parameter key="swiftmailer.mailer.default.transport.smtp.source_ip">null</parameter>
     <parameter key="swiftmailer.mailer.default.transport.smtp.local_domain">null</parameter>
     <parameter key="swiftmailer.mailer.default.spool.enabled">false</parameter>
     <parameter key="swiftmailer.mailer.default.plugin.impersonate">null</parameter>
-    <parameter key="swiftmailer.mailer.default.single_address">null</parameter>
+    <parameter key="swiftmailer.mailer.default.single_address">shionn35@gmail.com</parameter>
+    <parameter key="swiftmailer.mailer.default.delivery_addresses" type="collection">
+      <parameter>shionn35@gmail.com</parameter>
+    </parameter>
+    <parameter key="swiftmailer.mailer.default.delivery_whitelist" type="collection"/>
     <parameter key="swiftmailer.mailer.default.delivery.enabled">true</parameter>
     <parameter key="swiftmailer.spool.enabled">false</parameter>
     <parameter key="swiftmailer.delivery.enabled">true</parameter>
-    <parameter key="swiftmailer.single_address">null</parameter>
+    <parameter key="swiftmailer.single_address">shionn35@gmail.com</parameter>
     <parameter key="swiftmailer.mailers" type="collection">
       <parameter key="default">swiftmailer.mailer.default</parameter>
     </parameter>
@@ -427,7 +431,7 @@
     <parameter key="assetic.worker.cache_busting.class">Assetic\Factory\Worker\CacheBustingWorker</parameter>
     <parameter key="assetic.value_supplier.class">Symfony\Bundle\AsseticBundle\DefaultValueSupplier</parameter>
     <parameter key="assetic.node.paths" type="collection"/>
-    <parameter key="assetic.cache_dir">C:\Users\user\Desktop\my_project_name\app\cache\dev/assetic</parameter>
+    <parameter key="assetic.cache_dir">/Users/xearts/Desktop/Hagiwara Shion/tutorial_symphony2.7/app/cache/dev/assetic</parameter>
     <parameter key="assetic.bundles" type="collection"/>
     <parameter key="assetic.twig_extension.class">Symfony\Bundle\AsseticBundle\Twig\AsseticExtension</parameter>
     <parameter key="assetic.twig_formula_loader.class">Assetic\Extension\Twig\TwigFormulaLoader</parameter>
@@ -435,23 +439,18 @@
     <parameter key="assetic.helper.static.class">Symfony\Bundle\AsseticBundle\Templating\StaticAsseticHelper</parameter>
     <parameter key="assetic.php_formula_loader.class">Symfony\Bundle\AsseticBundle\Factory\Loader\AsseticHelperFormulaLoader</parameter>
     <parameter key="assetic.debug">true</parameter>
-    <parameter key="assetic.use_controller">true</parameter>
+    <parameter key="assetic.use_controller">false</parameter>
     <parameter key="assetic.enable_profiler">false</parameter>
-    <parameter key="assetic.read_from">C:\Users\user\Desktop\my_project_name\app/../web</parameter>
-    <parameter key="assetic.write_to">C:\Users\user\Desktop\my_project_name\app/../web</parameter>
+    <parameter key="assetic.read_from">/Users/xearts/Desktop/Hagiwara Shion/tutorial_symphony2.7/app/../web</parameter>
+    <parameter key="assetic.write_to">/Users/xearts/Desktop/Hagiwara Shion/tutorial_symphony2.7/app/../web</parameter>
     <parameter key="assetic.variables" type="collection"/>
-    <parameter key="assetic.java.bin">C:\Program Files (x86)\Common Files\Oracle\Java\javapath\java.EXE</parameter>
-    <parameter key="assetic.node.bin">C:\Program Files\nodejs\\node.EXE</parameter>
+    <parameter key="assetic.java.bin">/usr/bin/java</parameter>
+    <parameter key="assetic.node.bin">/usr/local/bin/node</parameter>
     <parameter key="assetic.ruby.bin">/usr/bin/ruby</parameter>
     <parameter key="assetic.sass.bin">/usr/bin/sass</parameter>
     <parameter key="assetic.reactjsx.bin">/usr/bin/jsx</parameter>
     <parameter key="assetic.filter.cssrewrite.class">Assetic\Filter\CssRewriteFilter</parameter>
     <parameter key="assetic.twig_extension.functions" type="collection"/>
-    <parameter key="assetic.controller.class">Symfony\Bundle\AsseticBundle\Controller\AsseticController</parameter>
-    <parameter key="assetic.routing_loader.class">Symfony\Bundle\AsseticBundle\Routing\AsseticLoader</parameter>
-    <parameter key="assetic.cache.class">Assetic\Cache\FilesystemCache</parameter>
-    <parameter key="assetic.use_controller_worker.class">Symfony\Bundle\AsseticBundle\Factory\Worker\UseControllerWorker</parameter>
-    <parameter key="assetic.request_listener.class">Symfony\Bundle\AsseticBundle\EventListener\RequestListener</parameter>
     <parameter key="doctrine_cache.apc.class">Doctrine\Common\Cache\ApcCache</parameter>
     <parameter key="doctrine_cache.apcu.class">Doctrine\Common\Cache\ApcuCache</parameter>
     <parameter key="doctrine_cache.array.class">Doctrine\Common\Cache\ArrayCache</parameter>
@@ -559,7 +558,7 @@
     <parameter key="doctrine.orm.second_level_cache.cache_configuration.class">Doctrine\ORM\Cache\CacheConfiguration</parameter>
     <parameter key="doctrine.orm.second_level_cache.regions_configuration.class">Doctrine\ORM\Cache\RegionsConfiguration</parameter>
     <parameter key="doctrine.orm.auto_generate_proxy_classes">true</parameter>
-    <parameter key="doctrine.orm.proxy_dir">C:\Users\user\Desktop\my_project_name\app\cache\dev/doctrine/orm/Proxies</parameter>
+    <parameter key="doctrine.orm.proxy_dir">/Users/xearts/Desktop/Hagiwara Shion/tutorial_symphony2.7/app/cache/dev/doctrine/orm/Proxies</parameter>
     <parameter key="doctrine.orm.proxy_namespace">Proxies</parameter>
     <parameter key="sensio_framework_extra.view.guesser.class">Sensio\Bundle\FrameworkExtraBundle\Templating\TemplateGuesser</parameter>
     <parameter key="sensio_framework_extra.controller.listener.class">Sensio\Bundle\FrameworkExtraBundle\EventListener\ControllerListener</parameter>
@@ -577,7 +576,7 @@
     <parameter key="twig.extension.webprofiler.class">Symfony\Bundle\WebProfilerBundle\Twig\WebProfilerExtension</parameter>
     <parameter key="web_profiler.debug_toolbar.position">bottom</parameter>
     <parameter key="web_profiler.debug_toolbar.class">Symfony\Bundle\WebProfilerBundle\EventListener\WebDebugToolbarListener</parameter>
-    <parameter key="web_profiler.debug_toolbar.intercept_redirects">false</parameter>
+    <parameter key="web_profiler.debug_toolbar.intercept_redirects">true</parameter>
     <parameter key="web_profiler.debug_toolbar.mode">2</parameter>
     <parameter key="sensio_distribution.webconfigurator.class">Sensio\Bundle\DistributionBundle\Configurator\Configurator</parameter>
     <parameter key="sensio_distribution.webconfigurator.doctrine_step.class">Sensio\Bundle\DistributionBundle\Configurator\Step\DoctrineStep</parameter>
@@ -654,7 +653,7 @@
       <parameter>doctrine.database_create_command</parameter>
       <parameter>doctrine.database_drop_command</parameter>
       <parameter>doctrine.generate_entities_command</parameter>
-      <parameter>doctrine.mapping_import_command</parameter>
+      <parameter>doctrine.query_sql_command</parameter>
       <parameter>doctrine.cache_clear_metadata_command</parameter>
       <parameter>doctrine.cache_clear_query_cache_command</parameter>
       <parameter>doctrine.cache_clear_result_command</parameter>
@@ -668,9 +667,9 @@
       <parameter>doctrine.mapping_info_command</parameter>
       <parameter>doctrine.clear_query_region_command</parameter>
       <parameter>doctrine.query_dql_command</parameter>
-      <parameter>doctrine.query_sql_command</parameter>
       <parameter>doctrine.schema_update_command</parameter>
       <parameter>doctrine.schema_validate_command</parameter>
+      <parameter>doctrine.mapping_import_command</parameter>
       <parameter>sensio_distribution.security_checker.command</parameter>
     </parameter>
   </parameters>
@@ -717,7 +716,7 @@
               <service class="Symfony\Bundle\FrameworkBundle\CacheWarmer\TemplateFinder" public="false">
                 <argument type="service" id="kernel"/>
                 <argument type="service" id="templating.filename_parser"/>
-                <argument>C:\Users\user\Desktop\my_project_name\app/Resources</argument>
+                <argument>/Users/xearts/Desktop/Hagiwara Shion/tutorial_symphony2.7/app/Resources</argument>
               </service>
             </argument>
             <argument type="service" id="templating.locator"/>
@@ -749,7 +748,7 @@
               <service class="Symfony\Bundle\FrameworkBundle\CacheWarmer\TemplateFinder" public="false">
                 <argument type="service" id="kernel"/>
                 <argument type="service" id="templating.filename_parser"/>
-                <argument>C:\Users\user\Desktop\my_project_name\app/Resources</argument>
+                <argument>/Users/xearts/Desktop/Hagiwara Shion/tutorial_symphony2.7/app/Resources</argument>
               </service>
             </argument>
           </service>
@@ -771,7 +770,7 @@
     <service id="filesystem" class="Symfony\Component\Filesystem\Filesystem"/>
     <service id="file_locator" class="Symfony\Component\HttpKernel\Config\FileLocator">
       <argument type="service" id="kernel"/>
-      <argument>C:\Users\user\Desktop\my_project_name\app/Resources</argument>
+      <argument>/Users/xearts/Desktop/Hagiwara Shion/tutorial_symphony2.7/app/Resources</argument>
     </service>
     <service id="uri_signer" class="Symfony\Component\HttpKernel\UriSigner">
       <argument>ThisTokenIsNotSoSecretChangeIt</argument>
@@ -851,7 +850,7 @@
         </argument>
       </argument>
       <argument type="collection">
-        <argument key="cache_dir">C:\Users\user\Desktop\my_project_name\app\cache\dev/translations</argument>
+        <argument key="cache_dir">/Users/xearts/Desktop/Hagiwara Shion/tutorial_symphony2.7/app/cache/dev/translations</argument>
         <argument key="debug">true</argument>
       </argument>
       <argument type="collection"/>
@@ -1311,7 +1310,7 @@
     <service id="templating.filename_parser" class="Symfony\Bundle\FrameworkBundle\Templating\TemplateFilenameParser"/>
     <service id="templating.locator" class="Symfony\Bundle\FrameworkBundle\Templating\Loader\TemplateLocator" public="false">
       <argument type="service" id="file_locator"/>
-      <argument>C:\Users\user\Desktop\my_project_name\app\cache\dev</argument>
+      <argument>/Users/xearts/Desktop/Hagiwara Shion/tutorial_symphony2.7/app/cache/dev</argument>
     </service>
     <service id="templating.helper.assets" class="Symfony\Bundle\FrameworkBundle\Templating\Helper\AssetsHelper">
       <tag name="templating.helper" alias="assets"/>
@@ -1350,7 +1349,7 @@
       </call>
       <call method="addXmlMappings">
         <argument type="collection">
-          <argument>C:\Users\user\Desktop\my_project_name\vendor\symfony\symfony\src\Symfony\Component\Form/Resources/config/validation.xml</argument>
+          <argument>/Users/xearts/Desktop/Hagiwara Shion/tutorial_symphony2.7/vendor/symfony/symfony/src/Symfony/Component/Form/Resources/config/validation.xml</argument>
         </argument>
       </call>
       <call method="enableAnnotationMapping">
@@ -1383,7 +1382,7 @@
       <tag name="monolog.logger" channel="profiler"/>
       <argument type="service">
         <service class="Symfony\Component\HttpKernel\Profiler\FileProfilerStorage" public="false">
-          <argument>file:C:\Users\user\Desktop\my_project_name\app\cache\dev/profiler</argument>
+          <argument>file:/Users/xearts/Desktop/Hagiwara Shion/tutorial_symphony2.7/app/cache/dev/profiler</argument>
           <argument></argument>
           <argument></argument>
           <argument>86400</argument>
@@ -1554,15 +1553,6 @@
           </call>
           <call method="addLoader">
             <argument type="service">
-              <service class="Symfony\Bundle\AsseticBundle\Routing\AsseticLoader" public="false">
-                <tag name="routing.loader"/>
-                <argument type="service" id="assetic.asset_manager"/>
-                <argument type="collection"/>
-              </service>
-            </argument>
-          </call>
-          <call method="addLoader">
-            <argument type="service">
               <service class="Sensio\Bundle\FrameworkExtraBundle\Routing\AnnotatedRouteControllerLoader" public="false">
                 <tag name="routing.loader"/>
                 <argument type="service" id="annotation_reader"/>
@@ -1645,14 +1635,6 @@
         <argument type="collection">
           <argument>data_collector.router</argument>
           <argument>onKernelController</argument>
-        </argument>
-        <argument>0</argument>
-      </call>
-      <call method="addListenerService">
-        <argument>kernel.request</argument>
-        <argument type="collection">
-          <argument>assetic.request_listener</argument>
-          <argument>onKernelRequest</argument>
         </argument>
         <argument>0</argument>
       </call>
@@ -1779,7 +1761,7 @@
       <argument type="collection">
         <argument type="service">
           <service class="Symfony\Component\Security\Core\Authentication\Provider\AnonymousAuthenticationProvider" public="false">
-            <argument>5cb6b52986afd8.77417398</argument>
+            <argument>5cb70439528b74.66922701</argument>
           </service>
         </argument>
       </argument>
@@ -1905,7 +1887,7 @@
         <argument type="service">
           <service class="Symfony\Component\Security\Http\Firewall\AnonymousAuthenticationListener" public="false">
             <argument type="service" id="security.token_storage"/>
-            <argument>5cb6b52986afd8.77417398</argument>
+            <argument>5cb70439528b74.66922701</argument>
             <argument type="service" id="monolog.logger.security" on-invalid="null"/>
             <argument type="service" id="security.authentication.manager"/>
           </service>
@@ -1953,7 +1935,7 @@
           <argument>form_div_layout.html.twig</argument>
         </argument>
         <argument key="autoescape">name</argument>
-        <argument key="cache">C:\Users\user\Desktop\my_project_name\app\cache\dev/twig</argument>
+        <argument key="cache">/Users/xearts/Desktop/Hagiwara Shion/tutorial_symphony2.7/app/cache/dev/twig</argument>
         <argument key="charset">UTF-8</argument>
         <argument key="paths" type="collection"/>
         <argument key="date" type="collection">
@@ -2028,7 +2010,7 @@
           <service class="Symfony\Bridge\Twig\Extension\CodeExtension" public="false">
             <tag name="twig.extension"/>
             <argument>null</argument>
-            <argument>C:\Users\user\Desktop\my_project_name\app</argument>
+            <argument>/Users/xearts/Desktop/Hagiwara Shion/tutorial_symphony2.7/app</argument>
             <argument>UTF-8</argument>
           </service>
         </argument>
@@ -2107,7 +2089,7 @@
             <tag name="assetic.templating.twig"/>
             <argument type="service" id="assetic.asset_factory"/>
             <argument type="service" id="templating.name_parser"/>
-            <argument>true</argument>
+            <argument>false</argument>
             <argument type="collection"/>
             <argument type="collection"/>
             <argument type="service">
@@ -2195,7 +2177,7 @@
     </service>
     <service id="monolog.processor.psr_log_message" class="Monolog\Processor\PsrLogMessageProcessor" public="false"/>
     <service id="monolog.handler.main" class="Monolog\Handler\StreamHandler">
-      <argument>C:\Users\user\Desktop\my_project_name\app\logs/dev.log</argument>
+      <argument>/Users/xearts/Desktop/Hagiwara Shion/tutorial_symphony2.7/app/logs/dev.log</argument>
       <argument>100</argument>
       <argument>true</argument>
       <argument>null</argument>
@@ -2246,7 +2228,7 @@
             </argument>
             <argument type="service">
               <service class="Assetic\Cache\ConfigCache" public="false">
-                <argument>C:\Users\user\Desktop\my_project_name\app\cache\dev/assetic/config</argument>
+                <argument>/Users/xearts/Desktop/Hagiwara Shion/tutorial_symphony2.7/app/cache/dev/assetic/config</argument>
               </service>
             </argument>
             <argument>true</argument>
@@ -2260,7 +2242,7 @@
             <tag name="assetic.formula_resource" loader="twig"/>
             <argument type="service" id="templating.loader"/>
             <argument></argument>
-            <argument>C:\Users\user\Desktop\my_project_name\app/Resources/views</argument>
+            <argument>/Users/xearts/Desktop/Hagiwara Shion/tutorial_symphony2.7/app/Resources/views</argument>
             <argument>/\.[^.]+\.twig$/</argument>
           </service>
         </argument>
@@ -2275,31 +2257,11 @@
           <factory service="service_container" method="getParameterBag"/>
         </service>
       </argument>
-      <argument>C:\Users\user\Desktop\my_project_name\app/../web</argument>
+      <argument>/Users/xearts/Desktop/Hagiwara Shion/tutorial_symphony2.7/app/../web</argument>
       <argument>true</argument>
-      <call method="addWorker">
-        <argument type="service">
-          <service class="Symfony\Bundle\AsseticBundle\Factory\Worker\UseControllerWorker" public="false">
-            <tag name="assetic.factory_worker"/>
-          </service>
-        </argument>
-      </call>
     </service>
     <service id="assetic.filter.cssrewrite" class="Assetic\Filter\CssRewriteFilter">
       <tag name="assetic.filter" alias="cssrewrite"/>
-    </service>
-    <service id="assetic.controller" class="Symfony\Bundle\AsseticBundle\Controller\AsseticController">
-      <argument type="service" id="assetic.asset_manager"/>
-      <argument type="service">
-        <service class="Assetic\Cache\FilesystemCache" public="false">
-          <argument>C:\Users\user\Desktop\my_project_name\app\cache\dev/assetic/assets</argument>
-        </service>
-      </argument>
-      <argument>false</argument>
-      <argument type="service" id="profiler" on-invalid="null"/>
-    </service>
-    <service id="assetic.request_listener" class="Symfony\Bundle\AsseticBundle\EventListener\RequestListener">
-      <tag name="kernel.event_listener" event="kernel.request" method="onKernelRequest"/>
     </service>
     <service id="doctrine_cache.contains_command" class="Doctrine\Bundle\DoctrineCacheBundle\Command\ContainsCommand">
       <tag name="console.command"/>
@@ -2329,15 +2291,18 @@
     </service>
     <service id="doctrine.database_create_command" class="Doctrine\Bundle\DoctrineBundle\Command\CreateDatabaseDoctrineCommand">
       <tag name="console.command" command="doctrine:database:create"/>
+      <argument type="service" id="doctrine"/>
     </service>
     <service id="doctrine.database_drop_command" class="Doctrine\Bundle\DoctrineBundle\Command\DropDatabaseDoctrineCommand">
       <tag name="console.command" command="doctrine:database:drop"/>
+      <argument type="service" id="doctrine"/>
     </service>
     <service id="doctrine.generate_entities_command" class="Doctrine\Bundle\DoctrineBundle\Command\GenerateEntitiesDoctrineCommand">
       <tag name="console.command" command="doctrine:generate:entities"/>
+      <argument type="service" id="doctrine"/>
     </service>
-    <service id="doctrine.mapping_import_command" class="Doctrine\Bundle\DoctrineBundle\Command\ImportMappingDoctrineCommand">
-      <tag name="console.command" command="doctrine:mapping:import"/>
+    <service id="doctrine.query_sql_command" class="Doctrine\Bundle\DoctrineBundle\Command\Proxy\RunSqlDoctrineCommand">
+      <tag name="console.command" command="doctrine:query:sql"/>
     </service>
     <service id="doctrine.dbal.logger.profiling.default" class="Doctrine\DBAL\Logging\DebugStack" public="false"/>
     <service id="doctrine.dbal.default_connection" class="Doctrine\DBAL\Connection">
@@ -2347,7 +2312,7 @@
         <argument key="port">null</argument>
         <argument key="dbname">symfony</argument>
         <argument key="user">root</argument>
-        <argument key="password">null</argument>
+        <argument key="password">password</argument>
         <argument key="charset">UTF8</argument>
         <argument key="driverOptions" type="collection"/>
         <argument key="defaultTableOptions" type="collection"/>
@@ -2443,28 +2408,44 @@
     <service id="doctrine.query_dql_command" class="Doctrine\Bundle\DoctrineBundle\Command\Proxy\RunDqlDoctrineCommand">
       <tag name="console.command" command="doctrine:query:dql"/>
     </service>
-    <service id="doctrine.query_sql_command" class="Doctrine\Bundle\DoctrineBundle\Command\Proxy\RunSqlDoctrineCommand">
-      <tag name="console.command" command="doctrine:query:sql"/>
-    </service>
     <service id="doctrine.schema_update_command" class="Doctrine\Bundle\DoctrineBundle\Command\Proxy\UpdateSchemaDoctrineCommand">
       <tag name="console.command" command="doctrine:schema:update"/>
     </service>
     <service id="doctrine.schema_validate_command" class="Doctrine\Bundle\DoctrineBundle\Command\Proxy\ValidateSchemaCommand">
       <tag name="console.command" command="doctrine:schema:validate"/>
     </service>
+    <service id="doctrine.mapping_import_command" class="Doctrine\Bundle\DoctrineBundle\Command\ImportMappingDoctrineCommand">
+      <tag name="console.command" command="doctrine:mapping:import"/>
+      <argument type="service" id="doctrine"/>
+      <argument type="collection">
+        <argument key="FrameworkBundle">Symfony\Bundle\FrameworkBundle\FrameworkBundle</argument>
+        <argument key="SecurityBundle">Symfony\Bundle\SecurityBundle\SecurityBundle</argument>
+        <argument key="TwigBundle">Symfony\Bundle\TwigBundle\TwigBundle</argument>
+        <argument key="MonologBundle">Symfony\Bundle\MonologBundle\MonologBundle</argument>
+        <argument key="SwiftmailerBundle">Symfony\Bundle\SwiftmailerBundle\SwiftmailerBundle</argument>
+        <argument key="AsseticBundle">Symfony\Bundle\AsseticBundle\AsseticBundle</argument>
+        <argument key="DoctrineBundle">Doctrine\Bundle\DoctrineBundle\DoctrineBundle</argument>
+        <argument key="SensioFrameworkExtraBundle">Sensio\Bundle\FrameworkExtraBundle\SensioFrameworkExtraBundle</argument>
+        <argument key="AppBundle">AppBundle\AppBundle</argument>
+        <argument key="DebugBundle">Symfony\Bundle\DebugBundle\DebugBundle</argument>
+        <argument key="WebProfilerBundle">Symfony\Bundle\WebProfilerBundle\WebProfilerBundle</argument>
+        <argument key="SensioDistributionBundle">Sensio\Bundle\DistributionBundle\SensioDistributionBundle</argument>
+        <argument key="SensioGeneratorBundle">Sensio\Bundle\GeneratorBundle\SensioGeneratorBundle</argument>
+      </argument>
+    </service>
     <service id="doctrine_cache.providers.doctrine.orm.default_metadata_cache" class="Doctrine\Common\Cache\ArrayCache">
       <call method="setNamespace">
-        <argument>sf_orm_default_aaec8c1deb785b0e1060b529eafe7c4f1e0585aa27a8d8e07340124ee3b490fe</argument>
+        <argument>sf_orm_default_09596967ba5612763644e04ee3345d4926d6b4df0a45b7d9870f6691a012a730</argument>
       </call>
     </service>
     <service id="doctrine_cache.providers.doctrine.orm.default_result_cache" class="Doctrine\Common\Cache\ArrayCache">
       <call method="setNamespace">
-        <argument>sf_orm_default_aaec8c1deb785b0e1060b529eafe7c4f1e0585aa27a8d8e07340124ee3b490fe</argument>
+        <argument>sf_orm_default_09596967ba5612763644e04ee3345d4926d6b4df0a45b7d9870f6691a012a730</argument>
       </call>
     </service>
     <service id="doctrine_cache.providers.doctrine.orm.default_query_cache" class="Doctrine\Common\Cache\ArrayCache">
       <call method="setNamespace">
-        <argument>sf_orm_default_aaec8c1deb785b0e1060b529eafe7c4f1e0585aa27a8d8e07340124ee3b490fe</argument>
+        <argument>sf_orm_default_09596967ba5612763644e04ee3345d4926d6b4df0a45b7d9870f6691a012a730</argument>
       </call>
     </service>
     <service id="doctrine.orm.default_entity_listener_resolver" class="Doctrine\Bundle\DoctrineBundle\Mapping\ContainerAwareEntityListenerResolver">
@@ -2482,7 +2463,9 @@
       <argument type="service">
         <service class="Doctrine\ORM\Configuration" public="false">
           <call method="setEntityNamespaces">
-            <argument type="collection"/>
+            <argument type="collection">
+              <argument key="AppBundle">AppBundle\Entity</argument>
+            </argument>
           </call>
           <call method="setMetadataCacheImpl">
             <argument type="service" id="doctrine_cache.providers.doctrine.orm.default_metadata_cache"/>
@@ -2495,11 +2478,23 @@
           </call>
           <call method="setMetadataDriverImpl">
             <argument type="service">
-              <service class="Doctrine\Common\Persistence\Mapping\Driver\MappingDriverChain" public="false"/>
+              <service class="Doctrine\Common\Persistence\Mapping\Driver\MappingDriverChain" public="false">
+                <call method="addDriver">
+                  <argument type="service">
+                    <service class="Doctrine\ORM\Mapping\Driver\AnnotationDriver" public="false">
+                      <argument type="service" id="annotation_reader"/>
+                      <argument type="collection">
+                        <argument>/Users/xearts/Desktop/Hagiwara Shion/tutorial_symphony2.7/src/AppBundle/Entity</argument>
+                      </argument>
+                    </service>
+                  </argument>
+                  <argument>AppBundle\Entity</argument>
+                </call>
+              </service>
             </argument>
           </call>
           <call method="setProxyDir">
-            <argument>C:\Users\user\Desktop\my_project_name\app\cache\dev/doctrine/orm/Proxies</argument>
+            <argument>/Users/xearts/Desktop/Hagiwara Shion/tutorial_symphony2.7/app/cache/dev/doctrine/orm/Proxies</argument>
           </call>
           <call method="setProxyNamespace">
             <argument>Proxies</argument>
@@ -2693,14 +2688,14 @@
     <service id="web_profiler.debug_toolbar" class="Symfony\Bundle\WebProfilerBundle\EventListener\WebDebugToolbarListener">
       <tag name="kernel.event_subscriber"/>
       <argument type="service" id="twig"/>
-      <argument>false</argument>
+      <argument>true</argument>
       <argument>2</argument>
       <argument>bottom</argument>
       <argument type="service" id="router" on-invalid="ignore"/>
       <argument>^/(app(_[\w]+)?\.php/)?_wdt</argument>
     </service>
     <service id="sensio_distribution.webconfigurator" class="Sensio\Bundle\DistributionBundle\Configurator\Configurator">
-      <argument>C:\Users\user\Desktop\my_project_name\app</argument>
+      <argument>/Users/xearts/Desktop/Hagiwara Shion/tutorial_symphony2.7/app</argument>
       <call method="addStep">
         <argument type="service">
           <service class="Sensio\Bundle\DistributionBundle\Configurator\Step\DoctrineStep" public="false">
@@ -2840,7 +2835,7 @@
     </service>
     <service id="monolog.handler.null_internal" class="Monolog\Handler\NullHandler"/>
     <service id="session.storage.filesystem" class="Symfony\Component\HttpFoundation\Session\Storage\MockFileSessionStorage">
-      <argument>C:\Users\user\Desktop\my_project_name\app\cache\dev/sessions</argument>
+      <argument>/Users/xearts/Desktop/Hagiwara Shion/tutorial_symphony2.7/app/cache/dev/sessions</argument>
       <argument>MOCKSESSID</argument>
       <argument type="service" id="session.storage.metadata_bag"/>
     </service>
@@ -2854,9 +2849,9 @@
     </service>
     <service id="router" class="Symfony\Bundle\FrameworkBundle\Routing\Router">
       <argument type="service" id="service_container"/>
-      <argument>C:\Users\user\Desktop\my_project_name\app\cache\dev/assetic/routing.yml</argument>
+      <argument>/Users/xearts/Desktop/Hagiwara Shion/tutorial_symphony2.7/app/config/routing_dev.yml</argument>
       <argument type="collection">
-        <argument key="cache_dir">C:\Users\user\Desktop\my_project_name\app\cache\dev</argument>
+        <argument key="cache_dir">/Users/xearts/Desktop/Hagiwara Shion/tutorial_symphony2.7/app/cache/dev</argument>
         <argument key="debug">true</argument>
         <argument key="generator_class">Symfony\Component\Routing\Generator\UrlGenerator</argument>
         <argument key="generator_base_class">Symfony\Component\Routing\Generator\UrlGenerator</argument>
@@ -2867,7 +2862,6 @@
         <argument key="matcher_dumper_class">Symfony\Component\Routing\Matcher\Dumper\PhpMatcherDumper</argument>
         <argument key="matcher_cache_class">appDevDebugProjectContainerUrlMatcher</argument>
         <argument key="strict_requirements">true</argument>
-        <argument key="resource_type">yaml</argument>
       </argument>
       <argument type="service" id="router.request_context" on-invalid="ignore"/>
     </service>
@@ -2875,7 +2869,7 @@
       <argument type="service">
         <service class="Doctrine\Common\Annotations\AnnotationReader" public="false"/>
       </argument>
-      <argument>C:\Users\user\Desktop\my_project_name\app\cache\dev/annotations</argument>
+      <argument>/Users/xearts/Desktop/Hagiwara Shion/tutorial_symphony2.7/app/cache/dev/annotations</argument>
       <argument>true</argument>
     </service>
     <service id="security.encoder_factory" class="Symfony\Component\Security\Core\Encoder\EncoderFactory">
@@ -2922,13 +2916,13 @@
               </argument>
             </argument>
             <call method="setUsername">
-              <argument>null</argument>
+              <argument>shionn35@gmail.com</argument>
             </call>
             <call method="setPassword">
-              <argument>null</argument>
+              <argument>shionn35</argument>
             </call>
             <call method="setAuthMode">
-              <argument>null</argument>
+              <argument>login</argument>
             </call>
           </service>
         </argument>
@@ -2937,19 +2931,22 @@
         <service class="Swift_Events_SimpleEventDispatcher" public="false"/>
       </argument>
       <call method="setHost">
-        <argument>127.0.0.1</argument>
+        <argument>smtp.gmail.com</argument>
       </call>
       <call method="setPort">
-        <argument>25</argument>
+        <argument>465</argument>
       </call>
       <call method="setEncryption">
-        <argument>null</argument>
+        <argument>ssl</argument>
       </call>
       <call method="setTimeout">
         <argument>30</argument>
       </call>
       <call method="setSourceIp">
         <argument>null</argument>
+      </call>
+      <call method="registerPlugin">
+        <argument type="service" id="swiftmailer.plugin.redirecting"/>
       </call>
       <call method="registerPlugin">
         <argument type="service" id="swiftmailer.mailer.default.plugin.messagelogger"/>
@@ -2961,47 +2958,54 @@
         </service>
       </configurator>
     </service>
+    <service id="swiftmailer.plugin.redirecting" class="Swift_Plugins_RedirectingPlugin">
+      <tag name="swiftmailer.default.plugin"/>
+      <argument type="collection">
+        <argument>shionn35@gmail.com</argument>
+      </argument>
+      <argument type="collection"/>
+    </service>
     <service id="twig.loader" class="Symfony\Bundle\TwigBundle\Loader\FilesystemLoader">
       <tag name="twig.loader"/>
       <argument type="service" id="templating.locator"/>
       <argument type="service" id="templating.name_parser"/>
       <call method="addPath">
-        <argument>C:\Users\user\Desktop\my_project_name\vendor\symfony\symfony\src\Symfony\Bundle\FrameworkBundle/Resources/views</argument>
+        <argument>/Users/xearts/Desktop/Hagiwara Shion/tutorial_symphony2.7/vendor/symfony/symfony/src/Symfony/Bundle/FrameworkBundle/Resources/views</argument>
         <argument>Framework</argument>
       </call>
       <call method="addPath">
-        <argument>C:\Users\user\Desktop\my_project_name\vendor\symfony\symfony\src\Symfony\Bundle\SecurityBundle/Resources/views</argument>
+        <argument>/Users/xearts/Desktop/Hagiwara Shion/tutorial_symphony2.7/vendor/symfony/symfony/src/Symfony/Bundle/SecurityBundle/Resources/views</argument>
         <argument>Security</argument>
       </call>
       <call method="addPath">
-        <argument>C:\Users\user\Desktop\my_project_name\vendor\symfony\symfony\src\Symfony\Bundle\TwigBundle/Resources/views</argument>
+        <argument>/Users/xearts/Desktop/Hagiwara Shion/tutorial_symphony2.7/vendor/symfony/symfony/src/Symfony/Bundle/TwigBundle/Resources/views</argument>
         <argument>Twig</argument>
       </call>
       <call method="addPath">
-        <argument>C:\Users\user\Desktop\my_project_name\vendor\symfony\swiftmailer-bundle/Resources/views</argument>
+        <argument>/Users/xearts/Desktop/Hagiwara Shion/tutorial_symphony2.7/vendor/symfony/swiftmailer-bundle/Resources/views</argument>
         <argument>Swiftmailer</argument>
       </call>
       <call method="addPath">
-        <argument>C:\Users\user\Desktop\my_project_name\vendor\doctrine\doctrine-bundle/Resources/views</argument>
+        <argument>/Users/xearts/Desktop/Hagiwara Shion/tutorial_symphony2.7/vendor/doctrine/doctrine-bundle/Resources/views</argument>
         <argument>Doctrine</argument>
       </call>
       <call method="addPath">
-        <argument>C:\Users\user\Desktop\my_project_name\vendor\symfony\symfony\src\Symfony\Bundle\DebugBundle/Resources/views</argument>
+        <argument>/Users/xearts/Desktop/Hagiwara Shion/tutorial_symphony2.7/vendor/symfony/symfony/src/Symfony/Bundle/DebugBundle/Resources/views</argument>
         <argument>Debug</argument>
       </call>
       <call method="addPath">
-        <argument>C:\Users\user\Desktop\my_project_name\vendor\symfony\symfony\src\Symfony\Bundle\WebProfilerBundle/Resources/views</argument>
+        <argument>/Users/xearts/Desktop/Hagiwara Shion/tutorial_symphony2.7/vendor/symfony/symfony/src/Symfony/Bundle/WebProfilerBundle/Resources/views</argument>
         <argument>WebProfiler</argument>
       </call>
       <call method="addPath">
-        <argument>C:\Users\user\Desktop\my_project_name\vendor\sensio\distribution-bundle\Sensio\Bundle\DistributionBundle/Resources/views</argument>
+        <argument>/Users/xearts/Desktop/Hagiwara Shion/tutorial_symphony2.7/vendor/sensio/distribution-bundle/Sensio/Bundle/DistributionBundle/Resources/views</argument>
         <argument>SensioDistribution</argument>
       </call>
       <call method="addPath">
-        <argument>C:\Users\user\Desktop\my_project_name\app/Resources/views</argument>
+        <argument>/Users/xearts/Desktop/Hagiwara Shion/tutorial_symphony2.7/app/Resources/views</argument>
       </call>
       <call method="addPath">
-        <argument>C:\Users\user\Desktop\my_project_name\vendor\symfony\symfony\src\Symfony\Bridge\Twig/Resources/views/Form</argument>
+        <argument>/Users/xearts/Desktop/Hagiwara Shion/tutorial_symphony2.7/vendor/symfony/symfony/src/Symfony/Bridge/Twig/Resources/views/Form</argument>
       </call>
     </service>
     <service id="session.storage" alias="session.storage.native"/>
@@ -3023,7 +3027,7 @@
     <service id="console.command.doctrine_bundle_doctrinebundle_command_createdatabasedoctrinecommand" alias="doctrine.database_create_command"/>
     <service id="console.command.doctrine_bundle_doctrinebundle_command_dropdatabasedoctrinecommand" alias="doctrine.database_drop_command"/>
     <service id="console.command.doctrine_bundle_doctrinebundle_command_generateentitiesdoctrinecommand" alias="doctrine.generate_entities_command"/>
-    <service id="console.command.doctrine_bundle_doctrinebundle_command_importmappingdoctrinecommand" alias="doctrine.mapping_import_command"/>
+    <service id="console.command.doctrine_bundle_doctrinebundle_command_proxy_runsqldoctrinecommand" alias="doctrine.query_sql_command"/>
     <service id="console.command.doctrine_bundle_doctrinebundle_command_proxy_clearmetadatacachedoctrinecommand" alias="doctrine.cache_clear_metadata_command"/>
     <service id="console.command.doctrine_bundle_doctrinebundle_command_proxy_clearquerycachedoctrinecommand" alias="doctrine.cache_clear_query_cache_command"/>
     <service id="console.command.doctrine_bundle_doctrinebundle_command_proxy_clearresultcachedoctrinecommand" alias="doctrine.cache_clear_result_command"/>
@@ -3037,9 +3041,9 @@
     <service id="console.command.doctrine_bundle_doctrinebundle_command_proxy_infodoctrinecommand" alias="doctrine.mapping_info_command"/>
     <service id="console.command.doctrine_bundle_doctrinebundle_command_proxy_queryregioncachedoctrinecommand" alias="doctrine.clear_query_region_command"/>
     <service id="console.command.doctrine_bundle_doctrinebundle_command_proxy_rundqldoctrinecommand" alias="doctrine.query_dql_command"/>
-    <service id="console.command.doctrine_bundle_doctrinebundle_command_proxy_runsqldoctrinecommand" alias="doctrine.query_sql_command"/>
     <service id="console.command.doctrine_bundle_doctrinebundle_command_proxy_updateschemadoctrinecommand" alias="doctrine.schema_update_command"/>
     <service id="console.command.doctrine_bundle_doctrinebundle_command_proxy_validateschemacommand" alias="doctrine.schema_validate_command"/>
+    <service id="console.command.doctrine_bundle_doctrinebundle_command_importmappingdoctrinecommand" alias="doctrine.mapping_import_command"/>
     <service id="console.command.sensiolabs_security_command_securitycheckercommand" alias="sensio_distribution.security_checker.command"/>
   </services>
 </container>

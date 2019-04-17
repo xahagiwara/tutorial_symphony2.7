@@ -34,10 +34,8 @@ class appDevDebugProjectContainer extends Container
             'annotation_reader' => 'getAnnotationReaderService',
             'assetic.asset_factory' => 'getAssetic_AssetFactoryService',
             'assetic.asset_manager' => 'getAssetic_AssetManagerService',
-            'assetic.controller' => 'getAssetic_ControllerService',
             'assetic.filter.cssrewrite' => 'getAssetic_Filter_CssrewriteService',
             'assetic.filter_manager' => 'getAssetic_FilterManagerService',
-            'assetic.request_listener' => 'getAssetic_RequestListenerService',
             'assets.context' => 'getAssets_ContextService',
             'assets.packages' => 'getAssets_PackagesService',
             'cache_clearer' => 'getCacheClearerService',
@@ -213,6 +211,7 @@ class appDevDebugProjectContainer extends Container
             'swiftmailer.mailer.default' => 'getSwiftmailer_Mailer_DefaultService',
             'swiftmailer.mailer.default.plugin.messagelogger' => 'getSwiftmailer_Mailer_Default_Plugin_MessageloggerService',
             'swiftmailer.mailer.default.transport' => 'getSwiftmailer_Mailer_Default_TransportService',
+            'swiftmailer.plugin.redirecting' => 'getSwiftmailer_Plugin_RedirectingService',
             'templating' => 'getTemplatingService',
             'templating.filename_parser' => 'getTemplating_FilenameParserService',
             'templating.helper.assets' => 'getTemplating_Helper_AssetsService',
@@ -353,16 +352,6 @@ class appDevDebugProjectContainer extends Container
     }
 
     /**
-     * Gets the public 'assetic.controller' shared service.
-     *
-     * @return \Symfony\Bundle\AsseticBundle\Controller\AsseticController
-     */
-    protected function getAssetic_ControllerService()
-    {
-        return $this->services['assetic.controller'] = new \Symfony\Bundle\AsseticBundle\Controller\AsseticController($this->get('assetic.asset_manager'), new \Assetic\Cache\FilesystemCache((__DIR__.'/assetic/assets')), false, $this->get('profiler', ContainerInterface::NULL_ON_INVALID_REFERENCE));
-    }
-
-    /**
      * Gets the public 'assetic.filter.cssrewrite' shared service.
      *
      * @return \Assetic\Filter\CssRewriteFilter
@@ -380,16 +369,6 @@ class appDevDebugProjectContainer extends Container
     protected function getAssetic_FilterManagerService()
     {
         return $this->services['assetic.filter_manager'] = new \Symfony\Bundle\AsseticBundle\FilterManager($this, array('cssrewrite' => 'assetic.filter.cssrewrite'));
-    }
-
-    /**
-     * Gets the public 'assetic.request_listener' shared service.
-     *
-     * @return \Symfony\Bundle\AsseticBundle\EventListener\RequestListener
-     */
-    protected function getAssetic_RequestListenerService()
-    {
-        return $this->services['assetic.request_listener'] = new \Symfony\Bundle\AsseticBundle\EventListener\RequestListener();
     }
 
     /**
@@ -527,7 +506,6 @@ class appDevDebugProjectContainer extends Container
         $this->services['debug.event_dispatcher'] = $instance = new \Symfony\Component\HttpKernel\Debug\TraceableEventDispatcher(new \Symfony\Component\EventDispatcher\ContainerAwareEventDispatcher($this), $this->get('debug.stopwatch'), $this->get('monolog.logger.event', ContainerInterface::NULL_ON_INVALID_REFERENCE));
 
         $instance->addListenerService('kernel.controller', array(0 => 'data_collector.router', 1 => 'onKernelController'), 0);
-        $instance->addListenerService('kernel.request', array(0 => 'assetic.request_listener', 1 => 'onKernelRequest'), 0);
         $instance->addSubscriberService('response_listener', 'Symfony\\Component\\HttpKernel\\EventListener\\ResponseListener');
         $instance->addSubscriberService('streamed_response_listener', 'Symfony\\Component\\HttpKernel\\EventListener\\StreamedResponseListener');
         $instance->addSubscriberService('locale_listener', 'Symfony\\Component\\HttpKernel\\EventListener\\LocaleListener');
@@ -643,7 +621,7 @@ class appDevDebugProjectContainer extends Container
      */
     protected function getDoctrine_DatabaseCreateCommandService()
     {
-        return $this->services['doctrine.database_create_command'] = new \Doctrine\Bundle\DoctrineBundle\Command\CreateDatabaseDoctrineCommand();
+        return $this->services['doctrine.database_create_command'] = new \Doctrine\Bundle\DoctrineBundle\Command\CreateDatabaseDoctrineCommand($this->get('doctrine'));
     }
 
     /**
@@ -653,7 +631,7 @@ class appDevDebugProjectContainer extends Container
      */
     protected function getDoctrine_DatabaseDropCommandService()
     {
-        return $this->services['doctrine.database_drop_command'] = new \Doctrine\Bundle\DoctrineBundle\Command\DropDatabaseDoctrineCommand();
+        return $this->services['doctrine.database_drop_command'] = new \Doctrine\Bundle\DoctrineBundle\Command\DropDatabaseDoctrineCommand($this->get('doctrine'));
     }
 
     /**
@@ -693,7 +671,7 @@ class appDevDebugProjectContainer extends Container
         $c = new \Symfony\Bridge\Doctrine\ContainerAwareEventManager($this);
         $c->addEventListener(array(0 => 'loadClassMetadata'), $this->get('doctrine.orm.default_listeners.attach_entity_listeners'));
 
-        return $this->services['doctrine.dbal.default_connection'] = $this->get('doctrine.dbal.connection_factory')->createConnection(array('driver' => 'pdo_mysql', 'host' => '127.0.0.1', 'port' => NULL, 'dbname' => 'symfony', 'user' => 'root', 'password' => NULL, 'charset' => 'UTF8', 'driverOptions' => array(), 'defaultTableOptions' => array()), $b, $c, array());
+        return $this->services['doctrine.dbal.default_connection'] = $this->get('doctrine.dbal.connection_factory')->createConnection(array('driver' => 'pdo_mysql', 'host' => '127.0.0.1', 'port' => NULL, 'dbname' => 'symfony', 'user' => 'root', 'password' => 'password', 'charset' => 'UTF8', 'driverOptions' => array(), 'defaultTableOptions' => array()), $b, $c, array());
     }
 
     /**
@@ -713,7 +691,7 @@ class appDevDebugProjectContainer extends Container
      */
     protected function getDoctrine_GenerateEntitiesCommandService()
     {
-        return $this->services['doctrine.generate_entities_command'] = new \Doctrine\Bundle\DoctrineBundle\Command\GenerateEntitiesDoctrineCommand();
+        return $this->services['doctrine.generate_entities_command'] = new \Doctrine\Bundle\DoctrineBundle\Command\GenerateEntitiesDoctrineCommand($this->get('doctrine'));
     }
 
     /**
@@ -733,7 +711,7 @@ class appDevDebugProjectContainer extends Container
      */
     protected function getDoctrine_MappingImportCommandService()
     {
-        return $this->services['doctrine.mapping_import_command'] = new \Doctrine\Bundle\DoctrineBundle\Command\ImportMappingDoctrineCommand();
+        return $this->services['doctrine.mapping_import_command'] = new \Doctrine\Bundle\DoctrineBundle\Command\ImportMappingDoctrineCommand($this->get('doctrine'), array('FrameworkBundle' => 'Symfony\\Bundle\\FrameworkBundle\\FrameworkBundle', 'SecurityBundle' => 'Symfony\\Bundle\\SecurityBundle\\SecurityBundle', 'TwigBundle' => 'Symfony\\Bundle\\TwigBundle\\TwigBundle', 'MonologBundle' => 'Symfony\\Bundle\\MonologBundle\\MonologBundle', 'SwiftmailerBundle' => 'Symfony\\Bundle\\SwiftmailerBundle\\SwiftmailerBundle', 'AsseticBundle' => 'Symfony\\Bundle\\AsseticBundle\\AsseticBundle', 'DoctrineBundle' => 'Doctrine\\Bundle\\DoctrineBundle\\DoctrineBundle', 'SensioFrameworkExtraBundle' => 'Sensio\\Bundle\\FrameworkExtraBundle\\SensioFrameworkExtraBundle', 'AppBundle' => 'AppBundle\\AppBundle', 'DebugBundle' => 'Symfony\\Bundle\\DebugBundle\\DebugBundle', 'WebProfilerBundle' => 'Symfony\\Bundle\\WebProfilerBundle\\WebProfilerBundle', 'SensioDistributionBundle' => 'Sensio\\Bundle\\DistributionBundle\\SensioDistributionBundle', 'SensioGeneratorBundle' => 'Sensio\\Bundle\\GeneratorBundle\\SensioGeneratorBundle'));
     }
 
     /**
@@ -763,23 +741,26 @@ class appDevDebugProjectContainer extends Container
      */
     protected function getDoctrine_Orm_DefaultEntityManagerService($lazyLoad = true)
     {
-        $a = new \Doctrine\ORM\Configuration();
-        $a->setEntityNamespaces(array());
-        $a->setMetadataCacheImpl($this->get('doctrine_cache.providers.doctrine.orm.default_metadata_cache'));
-        $a->setQueryCacheImpl($this->get('doctrine_cache.providers.doctrine.orm.default_query_cache'));
-        $a->setResultCacheImpl($this->get('doctrine_cache.providers.doctrine.orm.default_result_cache'));
-        $a->setMetadataDriverImpl(new \Doctrine\Common\Persistence\Mapping\Driver\MappingDriverChain());
-        $a->setProxyDir((__DIR__.'/doctrine/orm/Proxies'));
-        $a->setProxyNamespace('Proxies');
-        $a->setAutoGenerateProxyClasses(true);
-        $a->setClassMetadataFactoryName('Doctrine\\ORM\\Mapping\\ClassMetadataFactory');
-        $a->setDefaultRepositoryClassName('Doctrine\\ORM\\EntityRepository');
-        $a->setNamingStrategy(new \Doctrine\ORM\Mapping\UnderscoreNamingStrategy());
-        $a->setQuoteStrategy(new \Doctrine\ORM\Mapping\DefaultQuoteStrategy());
-        $a->setEntityListenerResolver($this->get('doctrine.orm.default_entity_listener_resolver'));
-        $a->setRepositoryFactory(new \Doctrine\Bundle\DoctrineBundle\Repository\ContainerRepositoryFactory(NULL));
+        $a = new \Doctrine\Common\Persistence\Mapping\Driver\MappingDriverChain();
+        $a->addDriver(new \Doctrine\ORM\Mapping\Driver\AnnotationDriver($this->get('annotation_reader'), array(0 => ($this->targetDirs[3].'/src/AppBundle/Entity'))), 'AppBundle\\Entity');
 
-        $this->services['doctrine.orm.default_entity_manager'] = $instance = \Doctrine\ORM\EntityManager::create($this->get('doctrine.dbal.default_connection'), $a);
+        $b = new \Doctrine\ORM\Configuration();
+        $b->setEntityNamespaces(array('AppBundle' => 'AppBundle\\Entity'));
+        $b->setMetadataCacheImpl($this->get('doctrine_cache.providers.doctrine.orm.default_metadata_cache'));
+        $b->setQueryCacheImpl($this->get('doctrine_cache.providers.doctrine.orm.default_query_cache'));
+        $b->setResultCacheImpl($this->get('doctrine_cache.providers.doctrine.orm.default_result_cache'));
+        $b->setMetadataDriverImpl($a);
+        $b->setProxyDir((__DIR__.'/doctrine/orm/Proxies'));
+        $b->setProxyNamespace('Proxies');
+        $b->setAutoGenerateProxyClasses(true);
+        $b->setClassMetadataFactoryName('Doctrine\\ORM\\Mapping\\ClassMetadataFactory');
+        $b->setDefaultRepositoryClassName('Doctrine\\ORM\\EntityRepository');
+        $b->setNamingStrategy(new \Doctrine\ORM\Mapping\UnderscoreNamingStrategy());
+        $b->setQuoteStrategy(new \Doctrine\ORM\Mapping\DefaultQuoteStrategy());
+        $b->setEntityListenerResolver($this->get('doctrine.orm.default_entity_listener_resolver'));
+        $b->setRepositoryFactory(new \Doctrine\Bundle\DoctrineBundle\Repository\ContainerRepositoryFactory(NULL));
+
+        $this->services['doctrine.orm.default_entity_manager'] = $instance = \Doctrine\ORM\EntityManager::create($this->get('doctrine.dbal.default_connection'), $b);
 
         $this->get('doctrine.orm.default_manager_configurator')->configure($instance);
 
@@ -925,7 +906,7 @@ class appDevDebugProjectContainer extends Container
     {
         $this->services['doctrine_cache.providers.doctrine.orm.default_metadata_cache'] = $instance = new \Doctrine\Common\Cache\ArrayCache();
 
-        $instance->setNamespace('sf_orm_default_aaec8c1deb785b0e1060b529eafe7c4f1e0585aa27a8d8e07340124ee3b490fe');
+        $instance->setNamespace('sf_orm_default_09596967ba5612763644e04ee3345d4926d6b4df0a45b7d9870f6691a012a730');
 
         return $instance;
     }
@@ -939,7 +920,7 @@ class appDevDebugProjectContainer extends Container
     {
         $this->services['doctrine_cache.providers.doctrine.orm.default_query_cache'] = $instance = new \Doctrine\Common\Cache\ArrayCache();
 
-        $instance->setNamespace('sf_orm_default_aaec8c1deb785b0e1060b529eafe7c4f1e0585aa27a8d8e07340124ee3b490fe');
+        $instance->setNamespace('sf_orm_default_09596967ba5612763644e04ee3345d4926d6b4df0a45b7d9870f6691a012a730');
 
         return $instance;
     }
@@ -953,7 +934,7 @@ class appDevDebugProjectContainer extends Container
     {
         $this->services['doctrine_cache.providers.doctrine.orm.default_result_cache'] = $instance = new \Doctrine\Common\Cache\ArrayCache();
 
-        $instance->setNamespace('sf_orm_default_aaec8c1deb785b0e1060b529eafe7c4f1e0585aa27a8d8e07340124ee3b490fe');
+        $instance->setNamespace('sf_orm_default_09596967ba5612763644e04ee3345d4926d6b4df0a45b7d9870f6691a012a730');
 
         return $instance;
     }
@@ -1560,7 +1541,7 @@ class appDevDebugProjectContainer extends Container
      */
     protected function getMonolog_Handler_MainService()
     {
-        $this->services['monolog.handler.main'] = $instance = new \Monolog\Handler\StreamHandler(($this->targetDirs[2].'\\logs/dev.log'), 100, true, NULL);
+        $this->services['monolog.handler.main'] = $instance = new \Monolog\Handler\StreamHandler(($this->targetDirs[2].'/logs/dev.log'), 100, true, NULL);
 
         $instance->pushProcessor($this->get('monolog.processor.psr_log_message'));
 
@@ -1835,7 +1816,7 @@ class appDevDebugProjectContainer extends Container
      */
     protected function getRouterService()
     {
-        return $this->services['router'] = new \Symfony\Bundle\FrameworkBundle\Routing\Router($this, (__DIR__.'/assetic/routing.yml'), array('cache_dir' => __DIR__, 'debug' => true, 'generator_class' => 'Symfony\\Component\\Routing\\Generator\\UrlGenerator', 'generator_base_class' => 'Symfony\\Component\\Routing\\Generator\\UrlGenerator', 'generator_dumper_class' => 'Symfony\\Component\\Routing\\Generator\\Dumper\\PhpGeneratorDumper', 'generator_cache_class' => 'appDevDebugProjectContainerUrlGenerator', 'matcher_class' => 'Symfony\\Bundle\\FrameworkBundle\\Routing\\RedirectableUrlMatcher', 'matcher_base_class' => 'Symfony\\Bundle\\FrameworkBundle\\Routing\\RedirectableUrlMatcher', 'matcher_dumper_class' => 'Symfony\\Component\\Routing\\Matcher\\Dumper\\PhpMatcherDumper', 'matcher_cache_class' => 'appDevDebugProjectContainerUrlMatcher', 'strict_requirements' => true, 'resource_type' => 'yaml'), $this->get('router.request_context', ContainerInterface::NULL_ON_INVALID_REFERENCE));
+        return $this->services['router'] = new \Symfony\Bundle\FrameworkBundle\Routing\Router($this, ($this->targetDirs[2].'/config/routing_dev.yml'), array('cache_dir' => __DIR__, 'debug' => true, 'generator_class' => 'Symfony\\Component\\Routing\\Generator\\UrlGenerator', 'generator_base_class' => 'Symfony\\Component\\Routing\\Generator\\UrlGenerator', 'generator_dumper_class' => 'Symfony\\Component\\Routing\\Generator\\Dumper\\PhpGeneratorDumper', 'generator_cache_class' => 'appDevDebugProjectContainerUrlGenerator', 'matcher_class' => 'Symfony\\Bundle\\FrameworkBundle\\Routing\\RedirectableUrlMatcher', 'matcher_base_class' => 'Symfony\\Bundle\\FrameworkBundle\\Routing\\RedirectableUrlMatcher', 'matcher_dumper_class' => 'Symfony\\Component\\Routing\\Matcher\\Dumper\\PhpMatcherDumper', 'matcher_cache_class' => 'appDevDebugProjectContainerUrlMatcher', 'strict_requirements' => true), $this->get('router.request_context', ContainerInterface::NULL_ON_INVALID_REFERENCE));
     }
 
     /**
@@ -1864,7 +1845,6 @@ class appDevDebugProjectContainer extends Container
         $d->addLoader(new \Symfony\Component\Routing\Loader\XmlFileLoader($a));
         $d->addLoader(new \Symfony\Component\Routing\Loader\YamlFileLoader($a));
         $d->addLoader(new \Symfony\Component\Routing\Loader\PhpFileLoader($a));
-        $d->addLoader(new \Symfony\Bundle\AsseticBundle\Routing\AsseticLoader($this->get('assetic.asset_manager'), array()));
         $d->addLoader($c);
         $d->addLoader(new \Symfony\Component\Routing\Loader\AnnotationDirectoryLoader($a, $c));
         $d->addLoader(new \Symfony\Component\Routing\Loader\AnnotationFileLoader($a, $c));
@@ -1956,7 +1936,7 @@ class appDevDebugProjectContainer extends Container
 
         $e = new \Symfony\Component\Security\Http\AccessMap();
 
-        return $this->services['security.firewall.map.context.main'] = new \Symfony\Bundle\SecurityBundle\Security\FirewallContext(array(0 => new \Symfony\Component\Security\Http\Firewall\ChannelListener($e, new \Symfony\Component\Security\Http\EntryPoint\RetryAuthenticationEntryPoint(80, 443), $a), 1 => new \Symfony\Component\Security\Http\Firewall\ContextListener($b, array(0 => new \Symfony\Component\Security\Core\User\InMemoryUserProvider(array())), 'main', $a, $this->get('debug.event_dispatcher', ContainerInterface::NULL_ON_INVALID_REFERENCE)), 2 => new \Symfony\Component\Security\Http\Firewall\AnonymousAuthenticationListener($b, '5cb6b52986afd8.77417398', $a, $c), 3 => new \Symfony\Component\Security\Http\Firewall\AccessListener($b, $this->get('security.access.decision_manager'), $e, $c)), new \Symfony\Component\Security\Http\Firewall\ExceptionListener($b, $this->get('security.authentication.trust_resolver'), new \Symfony\Component\Security\Http\HttpUtils($d, $d, '{^https?://%s$}i'), 'main', NULL, NULL, NULL, $a, false), NULL);
+        return $this->services['security.firewall.map.context.main'] = new \Symfony\Bundle\SecurityBundle\Security\FirewallContext(array(0 => new \Symfony\Component\Security\Http\Firewall\ChannelListener($e, new \Symfony\Component\Security\Http\EntryPoint\RetryAuthenticationEntryPoint(80, 443), $a), 1 => new \Symfony\Component\Security\Http\Firewall\ContextListener($b, array(0 => new \Symfony\Component\Security\Core\User\InMemoryUserProvider(array())), 'main', $a, $this->get('debug.event_dispatcher', ContainerInterface::NULL_ON_INVALID_REFERENCE)), 2 => new \Symfony\Component\Security\Http\Firewall\AnonymousAuthenticationListener($b, '5cb70439528b74.66922701', $a, $c), 3 => new \Symfony\Component\Security\Http\Firewall\AccessListener($b, $this->get('security.access.decision_manager'), $e, $c)), new \Symfony\Component\Security\Http\Firewall\ExceptionListener($b, $this->get('security.authentication.trust_resolver'), new \Symfony\Component\Security\Http\HttpUtils($d, $d, '{^https?://%s$}i'), 'main', NULL, NULL, NULL, $a, false), NULL);
     }
 
     /**
@@ -2257,21 +2237,32 @@ class appDevDebugProjectContainer extends Container
     protected function getSwiftmailer_Mailer_Default_TransportService()
     {
         $a = new \Swift_Transport_Esmtp_AuthHandler(array(0 => new \Swift_Transport_Esmtp_Auth_CramMd5Authenticator(), 1 => new \Swift_Transport_Esmtp_Auth_LoginAuthenticator(), 2 => new \Swift_Transport_Esmtp_Auth_PlainAuthenticator()));
-        $a->setUsername(NULL);
-        $a->setPassword(NULL);
-        $a->setAuthMode(NULL);
+        $a->setUsername('shionn35@gmail.com');
+        $a->setPassword('shionn35');
+        $a->setAuthMode('login');
 
         $this->services['swiftmailer.mailer.default.transport'] = $instance = new \Swift_Transport_EsmtpTransport(new \Swift_Transport_StreamBuffer(new \Swift_StreamFilters_StringReplacementFilterFactory()), array(0 => $a), new \Swift_Events_SimpleEventDispatcher());
 
-        $instance->setHost('127.0.0.1');
-        $instance->setPort(25);
-        $instance->setEncryption(NULL);
+        $instance->setHost('smtp.gmail.com');
+        $instance->setPort(465);
+        $instance->setEncryption('ssl');
         $instance->setTimeout(30);
         $instance->setSourceIp(NULL);
+        $instance->registerPlugin($this->get('swiftmailer.plugin.redirecting'));
         $instance->registerPlugin($this->get('swiftmailer.mailer.default.plugin.messagelogger'));
         call_user_func(array(new \Symfony\Bundle\SwiftmailerBundle\DependencyInjection\SmtpTransportConfigurator(NULL, $this->get('router.request_context', ContainerInterface::NULL_ON_INVALID_REFERENCE)), 'configure'), $instance);
 
         return $instance;
+    }
+
+    /**
+     * Gets the public 'swiftmailer.plugin.redirecting' shared service.
+     *
+     * @return \Swift_Plugins_RedirectingPlugin
+     */
+    protected function getSwiftmailer_Plugin_RedirectingService()
+    {
+        return $this->services['swiftmailer.plugin.redirecting'] = new \Swift_Plugins_RedirectingPlugin(array(0 => 'shionn35@gmail.com'), array());
     }
 
     /**
@@ -2710,7 +2701,7 @@ class appDevDebugProjectContainer extends Container
         $instance->addExtension(new \Symfony\Bridge\Twig\Extension\HttpKernelExtension($d));
         $instance->addExtension($e);
         $instance->addExtension(new \Symfony\Bridge\Twig\Extension\FormExtension(new \Symfony\Bridge\Twig\Form\TwigRenderer(new \Symfony\Bridge\Twig\Form\TwigRendererEngine(array(0 => 'form_div_layout.html.twig')), $this->get('security.csrf.token_manager', ContainerInterface::NULL_ON_INVALID_REFERENCE))));
-        $instance->addExtension(new \Symfony\Bundle\AsseticBundle\Twig\AsseticExtension($this->get('assetic.asset_factory'), $this->get('templating.name_parser'), true, array(), array(), new \Symfony\Bundle\AsseticBundle\DefaultValueSupplier($this)));
+        $instance->addExtension(new \Symfony\Bundle\AsseticBundle\Twig\AsseticExtension($this->get('assetic.asset_factory'), $this->get('templating.name_parser'), false, array(), array(), new \Symfony\Bundle\AsseticBundle\DefaultValueSupplier($this)));
         $instance->addExtension(new \Doctrine\Bundle\DoctrineBundle\Twig\DoctrineExtension());
         $instance->addExtension(new \Symfony\Bridge\Twig\Extension\DumpExtension($this->get('var_dumper.cloner')));
         $instance->addExtension(new \Symfony\Bundle\WebProfilerBundle\Twig\WebProfilerExtension());
@@ -2759,16 +2750,16 @@ class appDevDebugProjectContainer extends Container
     {
         $this->services['twig.loader'] = $instance = new \Symfony\Bundle\TwigBundle\Loader\FilesystemLoader($this->get('templating.locator'), $this->get('templating.name_parser'));
 
-        $instance->addPath(($this->targetDirs[3].'\\vendor\\symfony\\symfony\\src\\Symfony\\Bundle\\FrameworkBundle/Resources/views'), 'Framework');
-        $instance->addPath(($this->targetDirs[3].'\\vendor\\symfony\\symfony\\src\\Symfony\\Bundle\\SecurityBundle/Resources/views'), 'Security');
-        $instance->addPath(($this->targetDirs[3].'\\vendor\\symfony\\symfony\\src\\Symfony\\Bundle\\TwigBundle/Resources/views'), 'Twig');
-        $instance->addPath(($this->targetDirs[3].'\\vendor\\symfony\\swiftmailer-bundle/Resources/views'), 'Swiftmailer');
-        $instance->addPath(($this->targetDirs[3].'\\vendor\\doctrine\\doctrine-bundle/Resources/views'), 'Doctrine');
-        $instance->addPath(($this->targetDirs[3].'\\vendor\\symfony\\symfony\\src\\Symfony\\Bundle\\DebugBundle/Resources/views'), 'Debug');
-        $instance->addPath(($this->targetDirs[3].'\\vendor\\symfony\\symfony\\src\\Symfony\\Bundle\\WebProfilerBundle/Resources/views'), 'WebProfiler');
-        $instance->addPath(($this->targetDirs[3].'\\vendor\\sensio\\distribution-bundle\\Sensio\\Bundle\\DistributionBundle/Resources/views'), 'SensioDistribution');
+        $instance->addPath(($this->targetDirs[3].'/vendor/symfony/symfony/src/Symfony/Bundle/FrameworkBundle/Resources/views'), 'Framework');
+        $instance->addPath(($this->targetDirs[3].'/vendor/symfony/symfony/src/Symfony/Bundle/SecurityBundle/Resources/views'), 'Security');
+        $instance->addPath(($this->targetDirs[3].'/vendor/symfony/symfony/src/Symfony/Bundle/TwigBundle/Resources/views'), 'Twig');
+        $instance->addPath(($this->targetDirs[3].'/vendor/symfony/swiftmailer-bundle/Resources/views'), 'Swiftmailer');
+        $instance->addPath(($this->targetDirs[3].'/vendor/doctrine/doctrine-bundle/Resources/views'), 'Doctrine');
+        $instance->addPath(($this->targetDirs[3].'/vendor/symfony/symfony/src/Symfony/Bundle/DebugBundle/Resources/views'), 'Debug');
+        $instance->addPath(($this->targetDirs[3].'/vendor/symfony/symfony/src/Symfony/Bundle/WebProfilerBundle/Resources/views'), 'WebProfiler');
+        $instance->addPath(($this->targetDirs[3].'/vendor/sensio/distribution-bundle/Sensio/Bundle/DistributionBundle/Resources/views'), 'SensioDistribution');
         $instance->addPath(($this->targetDirs[2].'/Resources/views'));
-        $instance->addPath(($this->targetDirs[3].'\\vendor\\symfony\\symfony\\src\\Symfony\\Bridge\\Twig/Resources/views/Form'));
+        $instance->addPath(($this->targetDirs[3].'/vendor/symfony/symfony/src/Symfony/Bridge/Twig/Resources/views/Form'));
 
         return $instance;
     }
@@ -2835,7 +2826,7 @@ class appDevDebugProjectContainer extends Container
         $instance->setConstraintValidatorFactory(new \Symfony\Bundle\FrameworkBundle\Validator\ConstraintValidatorFactory($this, array('validator.expression' => 'validator.expression', 'Symfony\\Component\\Validator\\Constraints\\ExpressionValidator' => 'validator.expression', 'Symfony\\Component\\Validator\\Constraints\\EmailValidator' => 'validator.email', 'security.validator.user_password' => 'security.validator.user_password', 'Symfony\\Component\\Security\\Core\\Validator\\Constraints\\UserPasswordValidator' => 'security.validator.user_password', 'doctrine.orm.validator.unique' => 'doctrine.orm.validator.unique', 'Symfony\\Bridge\\Doctrine\\Validator\\Constraints\\UniqueEntityValidator' => 'doctrine.orm.validator.unique')));
         $instance->setTranslator($this->get('translator'));
         $instance->setTranslationDomain('validators');
-        $instance->addXmlMappings(array(0 => ($this->targetDirs[3].'\\vendor\\symfony\\symfony\\src\\Symfony\\Component\\Form/Resources/config/validation.xml')));
+        $instance->addXmlMappings(array(0 => ($this->targetDirs[3].'/vendor/symfony/symfony/src/Symfony/Component/Form/Resources/config/validation.xml')));
         $instance->enableAnnotationMapping($this->get('annotation_reader'));
         $instance->addMethodMapping('loadValidatorMetadata');
         $instance->addObjectInitializers(array(0 => $this->get('doctrine.orm.validator_initializer')));
@@ -2925,7 +2916,7 @@ class appDevDebugProjectContainer extends Container
      */
     protected function getWebProfiler_DebugToolbarService()
     {
-        return $this->services['web_profiler.debug_toolbar'] = new \Symfony\Bundle\WebProfilerBundle\EventListener\WebDebugToolbarListener($this->get('twig'), false, 2, 'bottom', $this->get('router', ContainerInterface::NULL_ON_INVALID_REFERENCE), '^/(app(_[\\w]+)?\\.php/)?_wdt');
+        return $this->services['web_profiler.debug_toolbar'] = new \Symfony\Bundle\WebProfilerBundle\EventListener\WebDebugToolbarListener($this->get('twig'), true, 2, 'bottom', $this->get('router', ContainerInterface::NULL_ON_INVALID_REFERENCE), '^/(app(_[\\w]+)?\\.php/)?_wdt');
     }
 
     /**
@@ -2935,11 +2926,7 @@ class appDevDebugProjectContainer extends Container
      */
     protected function getAssetic_AssetFactoryService()
     {
-        $this->services['assetic.asset_factory'] = $instance = new \Symfony\Bundle\AsseticBundle\Factory\AssetFactory($this->get('kernel'), $this, $this->getParameterBag(), ($this->targetDirs[2].'/../web'), true);
-
-        $instance->addWorker(new \Symfony\Bundle\AsseticBundle\Factory\Worker\UseControllerWorker());
-
-        return $instance;
+        return $this->services['assetic.asset_factory'] = new \Symfony\Bundle\AsseticBundle\Factory\AssetFactory($this->get('kernel'), $this, $this->getParameterBag(), ($this->targetDirs[2].'/../web'), true);
     }
 
     /**
@@ -3012,7 +2999,7 @@ class appDevDebugProjectContainer extends Container
      */
     protected function getSecurity_Authentication_ManagerService()
     {
-        $this->services['security.authentication.manager'] = $instance = new \Symfony\Component\Security\Core\Authentication\AuthenticationProviderManager(array(0 => new \Symfony\Component\Security\Core\Authentication\Provider\AnonymousAuthenticationProvider('5cb6b52986afd8.77417398')), true);
+        $this->services['security.authentication.manager'] = $instance = new \Symfony\Component\Security\Core\Authentication\AuthenticationProviderManager(array(0 => new \Symfony\Component\Security\Core\Authentication\Provider\AnonymousAuthenticationProvider('5cb70439528b74.66922701')), true);
 
         $instance->setEventDispatcher($this->get('debug.event_dispatcher'));
 
@@ -3136,7 +3123,7 @@ class appDevDebugProjectContainer extends Container
             'kernel.debug' => true,
             'kernel.name' => 'app',
             'kernel.cache_dir' => __DIR__,
-            'kernel.logs_dir' => ($this->targetDirs[2].'\\logs'),
+            'kernel.logs_dir' => ($this->targetDirs[2].'/logs'),
             'kernel.bundles' => array(
                 'FrameworkBundle' => 'Symfony\\Bundle\\FrameworkBundle\\FrameworkBundle',
                 'SecurityBundle' => 'Symfony\\Bundle\\SecurityBundle\\SecurityBundle',
@@ -3155,67 +3142,67 @@ class appDevDebugProjectContainer extends Container
             'kernel.bundles_metadata' => array(
                 'FrameworkBundle' => array(
                     'parent' => NULL,
-                    'path' => ($this->targetDirs[3].'\\vendor\\symfony\\symfony\\src\\Symfony\\Bundle\\FrameworkBundle'),
+                    'path' => ($this->targetDirs[3].'/vendor/symfony/symfony/src/Symfony/Bundle/FrameworkBundle'),
                     'namespace' => 'Symfony\\Bundle\\FrameworkBundle',
                 ),
                 'SecurityBundle' => array(
                     'parent' => NULL,
-                    'path' => ($this->targetDirs[3].'\\vendor\\symfony\\symfony\\src\\Symfony\\Bundle\\SecurityBundle'),
+                    'path' => ($this->targetDirs[3].'/vendor/symfony/symfony/src/Symfony/Bundle/SecurityBundle'),
                     'namespace' => 'Symfony\\Bundle\\SecurityBundle',
                 ),
                 'TwigBundle' => array(
                     'parent' => NULL,
-                    'path' => ($this->targetDirs[3].'\\vendor\\symfony\\symfony\\src\\Symfony\\Bundle\\TwigBundle'),
+                    'path' => ($this->targetDirs[3].'/vendor/symfony/symfony/src/Symfony/Bundle/TwigBundle'),
                     'namespace' => 'Symfony\\Bundle\\TwigBundle',
                 ),
                 'MonologBundle' => array(
                     'parent' => NULL,
-                    'path' => ($this->targetDirs[3].'\\vendor\\symfony\\monolog-bundle'),
+                    'path' => ($this->targetDirs[3].'/vendor/symfony/monolog-bundle'),
                     'namespace' => 'Symfony\\Bundle\\MonologBundle',
                 ),
                 'SwiftmailerBundle' => array(
                     'parent' => NULL,
-                    'path' => ($this->targetDirs[3].'\\vendor\\symfony\\swiftmailer-bundle'),
+                    'path' => ($this->targetDirs[3].'/vendor/symfony/swiftmailer-bundle'),
                     'namespace' => 'Symfony\\Bundle\\SwiftmailerBundle',
                 ),
                 'AsseticBundle' => array(
                     'parent' => NULL,
-                    'path' => ($this->targetDirs[3].'\\vendor\\symfony\\assetic-bundle'),
+                    'path' => ($this->targetDirs[3].'/vendor/symfony/assetic-bundle'),
                     'namespace' => 'Symfony\\Bundle\\AsseticBundle',
                 ),
                 'DoctrineBundle' => array(
                     'parent' => NULL,
-                    'path' => ($this->targetDirs[3].'\\vendor\\doctrine\\doctrine-bundle'),
+                    'path' => ($this->targetDirs[3].'/vendor/doctrine/doctrine-bundle'),
                     'namespace' => 'Doctrine\\Bundle\\DoctrineBundle',
                 ),
                 'SensioFrameworkExtraBundle' => array(
                     'parent' => NULL,
-                    'path' => ($this->targetDirs[3].'\\vendor\\sensio\\framework-extra-bundle'),
+                    'path' => ($this->targetDirs[3].'/vendor/sensio/framework-extra-bundle'),
                     'namespace' => 'Sensio\\Bundle\\FrameworkExtraBundle',
                 ),
                 'AppBundle' => array(
                     'parent' => NULL,
-                    'path' => ($this->targetDirs[3].'\\src\\AppBundle'),
+                    'path' => ($this->targetDirs[3].'/src/AppBundle'),
                     'namespace' => 'AppBundle',
                 ),
                 'DebugBundle' => array(
                     'parent' => NULL,
-                    'path' => ($this->targetDirs[3].'\\vendor\\symfony\\symfony\\src\\Symfony\\Bundle\\DebugBundle'),
+                    'path' => ($this->targetDirs[3].'/vendor/symfony/symfony/src/Symfony/Bundle/DebugBundle'),
                     'namespace' => 'Symfony\\Bundle\\DebugBundle',
                 ),
                 'WebProfilerBundle' => array(
                     'parent' => NULL,
-                    'path' => ($this->targetDirs[3].'\\vendor\\symfony\\symfony\\src\\Symfony\\Bundle\\WebProfilerBundle'),
+                    'path' => ($this->targetDirs[3].'/vendor/symfony/symfony/src/Symfony/Bundle/WebProfilerBundle'),
                     'namespace' => 'Symfony\\Bundle\\WebProfilerBundle',
                 ),
                 'SensioDistributionBundle' => array(
                     'parent' => NULL,
-                    'path' => ($this->targetDirs[3].'\\vendor\\sensio\\distribution-bundle\\Sensio\\Bundle\\DistributionBundle'),
+                    'path' => ($this->targetDirs[3].'/vendor/sensio/distribution-bundle/Sensio/Bundle/DistributionBundle'),
                     'namespace' => 'Sensio\\Bundle\\DistributionBundle',
                 ),
                 'SensioGeneratorBundle' => array(
                     'parent' => NULL,
-                    'path' => ($this->targetDirs[3].'\\vendor\\sensio\\generator-bundle\\Sensio\\Bundle\\GeneratorBundle'),
+                    'path' => ($this->targetDirs[3].'/vendor/sensio/generator-bundle/Sensio/Bundle/GeneratorBundle'),
                     'namespace' => 'Sensio\\Bundle\\GeneratorBundle',
                 ),
             ),
@@ -3225,11 +3212,11 @@ class appDevDebugProjectContainer extends Container
             'database_port' => NULL,
             'database_name' => 'symfony',
             'database_user' => 'root',
-            'database_password' => NULL,
-            'mailer_transport' => 'smtp',
-            'mailer_host' => '127.0.0.1',
-            'mailer_user' => NULL,
-            'mailer_password' => NULL,
+            'database_password' => 'password',
+            'mailer_transport' => 'gmail',
+            'mailer_host' => NULL,
+            'mailer_user' => 'shionn35@gmail.com',
+            'mailer_password' => 'shionn35',
             'secret' => 'ThisTokenIsNotSoSecretChangeIt',
             'locale' => 'en',
             'controller_resolver.class' => 'Symfony\\Bundle\\FrameworkBundle\\Controller\\ControllerResolver',
@@ -3383,7 +3370,7 @@ class appDevDebugProjectContainer extends Container
             'router.request_context.host' => 'localhost',
             'router.request_context.scheme' => 'http',
             'router.request_context.base_url' => '',
-            'router.resource' => (__DIR__.'/assetic/routing.yml'),
+            'router.resource' => ($this->targetDirs[2].'/config/routing_dev.yml'),
             'router.cache_class_prefix' => 'appDevDebugProjectContainer',
             'request_listener.http_port' => 80,
             'request_listener.https_port' => 443,
@@ -3531,22 +3518,28 @@ class appDevDebugProjectContainer extends Container
             'swiftmailer.email_sender.listener.class' => 'Symfony\\Bundle\\SwiftmailerBundle\\EventListener\\EmailSenderListener',
             'swiftmailer.data_collector.class' => 'Symfony\\Bundle\\SwiftmailerBundle\\DataCollector\\MessageDataCollector',
             'swiftmailer.mailer.default.transport.name' => 'smtp',
-            'swiftmailer.mailer.default.transport.smtp.encryption' => NULL,
-            'swiftmailer.mailer.default.transport.smtp.port' => 25,
-            'swiftmailer.mailer.default.transport.smtp.host' => '127.0.0.1',
-            'swiftmailer.mailer.default.transport.smtp.username' => NULL,
-            'swiftmailer.mailer.default.transport.smtp.password' => NULL,
-            'swiftmailer.mailer.default.transport.smtp.auth_mode' => NULL,
+            'swiftmailer.mailer.default.transport.smtp.encryption' => 'ssl',
+            'swiftmailer.mailer.default.transport.smtp.port' => 465,
+            'swiftmailer.mailer.default.transport.smtp.host' => 'smtp.gmail.com',
+            'swiftmailer.mailer.default.transport.smtp.username' => 'shionn35@gmail.com',
+            'swiftmailer.mailer.default.transport.smtp.password' => 'shionn35',
+            'swiftmailer.mailer.default.transport.smtp.auth_mode' => 'login',
             'swiftmailer.mailer.default.transport.smtp.timeout' => 30,
             'swiftmailer.mailer.default.transport.smtp.source_ip' => NULL,
             'swiftmailer.mailer.default.transport.smtp.local_domain' => NULL,
             'swiftmailer.mailer.default.spool.enabled' => false,
             'swiftmailer.mailer.default.plugin.impersonate' => NULL,
-            'swiftmailer.mailer.default.single_address' => NULL,
+            'swiftmailer.mailer.default.single_address' => 'shionn35@gmail.com',
+            'swiftmailer.mailer.default.delivery_addresses' => array(
+                0 => 'shionn35@gmail.com',
+            ),
+            'swiftmailer.mailer.default.delivery_whitelist' => array(
+
+            ),
             'swiftmailer.mailer.default.delivery.enabled' => true,
             'swiftmailer.spool.enabled' => false,
             'swiftmailer.delivery.enabled' => true,
-            'swiftmailer.single_address' => NULL,
+            'swiftmailer.single_address' => 'shionn35@gmail.com',
             'swiftmailer.mailers' => array(
                 'default' => 'swiftmailer.mailer.default',
             ),
@@ -3577,15 +3570,15 @@ class appDevDebugProjectContainer extends Container
             'assetic.helper.static.class' => 'Symfony\\Bundle\\AsseticBundle\\Templating\\StaticAsseticHelper',
             'assetic.php_formula_loader.class' => 'Symfony\\Bundle\\AsseticBundle\\Factory\\Loader\\AsseticHelperFormulaLoader',
             'assetic.debug' => true,
-            'assetic.use_controller' => true,
+            'assetic.use_controller' => false,
             'assetic.enable_profiler' => false,
             'assetic.read_from' => ($this->targetDirs[2].'/../web'),
             'assetic.write_to' => ($this->targetDirs[2].'/../web'),
             'assetic.variables' => array(
 
             ),
-            'assetic.java.bin' => 'C:\\Program Files (x86)\\Common Files\\Oracle\\Java\\javapath\\java.EXE',
-            'assetic.node.bin' => 'C:\\Program Files\\nodejs\\\\node.EXE',
+            'assetic.java.bin' => '/usr/bin/java',
+            'assetic.node.bin' => '/usr/local/bin/node',
             'assetic.ruby.bin' => '/usr/bin/ruby',
             'assetic.sass.bin' => '/usr/bin/sass',
             'assetic.reactjsx.bin' => '/usr/bin/jsx',
@@ -3593,11 +3586,6 @@ class appDevDebugProjectContainer extends Container
             'assetic.twig_extension.functions' => array(
 
             ),
-            'assetic.controller.class' => 'Symfony\\Bundle\\AsseticBundle\\Controller\\AsseticController',
-            'assetic.routing_loader.class' => 'Symfony\\Bundle\\AsseticBundle\\Routing\\AsseticLoader',
-            'assetic.cache.class' => 'Assetic\\Cache\\FilesystemCache',
-            'assetic.use_controller_worker.class' => 'Symfony\\Bundle\\AsseticBundle\\Factory\\Worker\\UseControllerWorker',
-            'assetic.request_listener.class' => 'Symfony\\Bundle\\AsseticBundle\\EventListener\\RequestListener',
             'doctrine_cache.apc.class' => 'Doctrine\\Common\\Cache\\ApcCache',
             'doctrine_cache.apcu.class' => 'Doctrine\\Common\\Cache\\ApcuCache',
             'doctrine_cache.array.class' => 'Doctrine\\Common\\Cache\\ArrayCache',
@@ -3725,7 +3713,7 @@ class appDevDebugProjectContainer extends Container
             'twig.extension.webprofiler.class' => 'Symfony\\Bundle\\WebProfilerBundle\\Twig\\WebProfilerExtension',
             'web_profiler.debug_toolbar.position' => 'bottom',
             'web_profiler.debug_toolbar.class' => 'Symfony\\Bundle\\WebProfilerBundle\\EventListener\\WebDebugToolbarListener',
-            'web_profiler.debug_toolbar.intercept_redirects' => false,
+            'web_profiler.debug_toolbar.intercept_redirects' => true,
             'web_profiler.debug_toolbar.mode' => 2,
             'sensio_distribution.webconfigurator.class' => 'Sensio\\Bundle\\DistributionBundle\\Configurator\\Configurator',
             'sensio_distribution.webconfigurator.doctrine_step.class' => 'Sensio\\Bundle\\DistributionBundle\\Configurator\\Step\\DoctrineStep',
@@ -3802,7 +3790,7 @@ class appDevDebugProjectContainer extends Container
                 4 => 'doctrine.database_create_command',
                 5 => 'doctrine.database_drop_command',
                 6 => 'doctrine.generate_entities_command',
-                7 => 'doctrine.mapping_import_command',
+                7 => 'doctrine.query_sql_command',
                 8 => 'doctrine.cache_clear_metadata_command',
                 9 => 'doctrine.cache_clear_query_cache_command',
                 10 => 'doctrine.cache_clear_result_command',
@@ -3816,9 +3804,9 @@ class appDevDebugProjectContainer extends Container
                 18 => 'doctrine.mapping_info_command',
                 19 => 'doctrine.clear_query_region_command',
                 20 => 'doctrine.query_dql_command',
-                21 => 'doctrine.query_sql_command',
-                22 => 'doctrine.schema_update_command',
-                23 => 'doctrine.schema_validate_command',
+                21 => 'doctrine.schema_update_command',
+                22 => 'doctrine.schema_validate_command',
+                23 => 'doctrine.mapping_import_command',
                 24 => 'sensio_distribution.security_checker.command',
             ),
         );

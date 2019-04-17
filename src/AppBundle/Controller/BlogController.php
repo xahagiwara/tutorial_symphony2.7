@@ -5,7 +5,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 
 class BlogController extends Controller{
     public function latestListAction(){
-        $blogList = [
+        /*$blogList = [
             [
               'taragetData' => '2015年3月15日',
               'title' => '東京公演レポート'
@@ -18,7 +18,12 @@ class BlogController extends Controller{
                 'taragetData' => '2015年1月3日',
                 'title' => '本年もよろしくお願い致します'
             ],
-        ];
+        ];*/
+
+        $em = $this->getDoctrine()->getManager();
+
+        $blogArticleRepository = $em->getRepository('AppBundle:BlogArticle');
+        $blogList = $blogArticleRepository->findBy([], ['targetDate' => 'DESC']);
 
         return $this->render('Blog\latesList.html.twig',
             ['blogList' => $blogList]);
