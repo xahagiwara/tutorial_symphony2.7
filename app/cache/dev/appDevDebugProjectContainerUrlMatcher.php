@@ -160,24 +160,43 @@ class appDevDebugProjectContainerUrlMatcher extends Symfony\Bundle\FrameworkBund
         }
         not_homepage:
 
-        // app_inquiry_index
-        if ('/inquiry' === rtrim($pathinfo, '/')) {
-            if ('/' === substr($pathinfo, -1)) {
-                // no-op
-            } elseif (!in_array($this->context->getMethod(), array('HEAD', 'GET'))) {
-                goto not_app_inquiry_index;
-            } else {
-                return $this->redirect($rawPathinfo.'/', 'app_inquiry_index');
+        if (0 === strpos($pathinfo, '/inquiry')) {
+            // app_inquiry_index
+            if ('/inquiry' === rtrim($pathinfo, '/')) {
+                if ('/' === substr($pathinfo, -1)) {
+                    // no-op
+                } elseif (!in_array($this->context->getMethod(), array('HEAD', 'GET'))) {
+                    goto not_app_inquiry_index;
+                } else {
+                    return $this->redirect($rawPathinfo.'/', 'app_inquiry_index');
+                }
+
+                if (!in_array($this->context->getMethod(), array('GET', 'HEAD'))) {
+                    $allow = array_merge($allow, array('GET', 'HEAD'));
+                    goto not_app_inquiry_index;
+                }
+
+                return array (  '_controller' => 'AppBundle\\Controller\\InquiryController::indexAction',  '_route' => 'app_inquiry_index',);
+            }
+            not_app_inquiry_index:
+
+            // app_inquiry_complete
+            if ('/inquiry/complete' === $pathinfo) {
+                return array (  '_controller' => 'AppBundle\\Controller\\InquiryController::completeAction',  '_route' => 'app_inquiry_complete',);
             }
 
-            if (!in_array($this->context->getMethod(), array('GET', 'HEAD'))) {
-                $allow = array_merge($allow, array('GET', 'HEAD'));
-                goto not_app_inquiry_index;
-            }
+            // app_inquiry_indexpost
+            if ('/inquiry/' === $pathinfo) {
+                if ($this->context->getMethod() != 'POST') {
+                    $allow[] = 'POST';
+                    goto not_app_inquiry_indexpost;
+                }
 
-            return array (  '_controller' => 'AppBundle\\Controller\\InquiryController::indexAction',  '_route' => 'app_inquiry_index',);
+                return array (  '_controller' => 'AppBundle\\Controller\\InquiryController::indexPostAction',  '_route' => 'app_inquiry_indexpost',);
+            }
+            not_app_inquiry_indexpost:
+
         }
-        not_app_inquiry_index:
 
         // app_toppage_index
         if ('' === rtrim($pathinfo, '/')) {

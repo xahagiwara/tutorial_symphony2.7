@@ -16,7 +16,50 @@
 <section id="inquiry-sec">
     <div class="container">
         <div class="row pad-row">
-            {{ form(form) }}
+            {{ form_start(form) }}
+            <table class="table">
+                <tr>
+                    <th><i class="fa fa-circle"> お名前</i></th>
+                    <td>
+                        <!--フォーム要素のウィジットを、class属性を追加して出力-->
+                        {{ form_widget(form.name, {"after": {"class" : "form-control"}}) }}
+                        <!--フォーム要素のエラーを出力-->
+                        {{ form_errors(form.name) }}
+                    </td>
+                </tr>
+                <tr>
+                    <th><i class="fa fa-circle"> メールアドレス</i></th>
+                    <td>
+                        {{ form_widget(form.email, {"attr": {"class" : "form-control"}}) }}
+                        {{ form_errors(form.email) }}
+                    </td>
+                </tr>
+                <tr>
+                    <th><i class="fa fa-circle-o"> 電話番号</i></th>
+                    <td>
+                        {{ form_widget(form.tel, {"attr": {"class" : "form-control"}}) }}
+                        {{ form_errors(form.tel) }}
+                    </td>
+                </tr>
+                <tr>
+                    <th><i class="fa fa-circle"> お問い合わせ種別</i></th>
+                    <td>
+                        {{ form_widget(form.type, {"attr": {"class" : "form-control"}}) }}
+                        {{ form_errors(form.type) }}
+                    </td>
+                </tr>
+                <tr>
+                    <th><i class="fa fa-circle"> お問い合わせ内容</i></th>
+                    <td>
+                        {{ form_widget(form.content, {"attr": {"class" : "form-control"}}) }}
+                        {{ form_errors(form.content) }}
+                    </td>
+                </tr>
+            </table>
+            <div class="text-center">
+                {{ form_widget(form.submit, {"attr": {"class": "btn btn-primary"}}) }}
+            </div>
+            {{ form_end(form) }}
         </div>
     </div>
 </section>
