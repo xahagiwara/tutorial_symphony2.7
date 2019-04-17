@@ -160,8 +160,27 @@ class appDevDebugProjectContainerUrlMatcher extends Symfony\Bundle\FrameworkBund
         }
         not_homepage:
 
+        // app_inquiry_index
+        if ('/inquiry' === rtrim($pathinfo, '/')) {
+            if ('/' === substr($pathinfo, -1)) {
+                // no-op
+            } elseif (!in_array($this->context->getMethod(), array('HEAD', 'GET'))) {
+                goto not_app_inquiry_index;
+            } else {
+                return $this->redirect($rawPathinfo.'/', 'app_inquiry_index');
+            }
+
+            if (!in_array($this->context->getMethod(), array('GET', 'HEAD'))) {
+                $allow = array_merge($allow, array('GET', 'HEAD'));
+                goto not_app_inquiry_index;
+            }
+
+            return array (  '_controller' => 'AppBundle\\Controller\\InquiryController::indexAction',  '_route' => 'app_inquiry_index',);
+        }
+        not_app_inquiry_index:
+
         // app_toppage_index
-        if ('/a' === rtrim($pathinfo, '/')) {
+        if ('' === rtrim($pathinfo, '/')) {
             if ('/' === substr($pathinfo, -1)) {
                 // no-op
             } elseif (!in_array($this->context->getMethod(), array('HEAD', 'GET'))) {
