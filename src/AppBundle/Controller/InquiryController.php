@@ -59,16 +59,31 @@ class InquiryController extends Controller{
      * @Route("/")
      * @Method("post")
      */
-    public function indexPostAction(Request $request)
-    {
+    public function indexPostAction(Request $request){
         $form = $this->createInquiryForm();
         $form->handleRequest($request);
         //フォームの有効性をチェック
         if ($form->isValid()) {
+            $data = $form->getData();
+
+            $message = \Swift_Message::newInstance()
+                ->setSubject('Webサイトからのお問い合わせ')
+                ->setFrom('webmaster@example.com')
+                ->setTo('admin@example.com')
+                ->setBody(
+                    $this->renderView(
+                        'mail/inquiry.txt.twig',
+                        ['data' => $data]
+                    )
+                );
+
+            $this->get('mailer')->send($message);
+
             return $this->redirect(
                 $this->generateUrl('app_inquiry_complete')
             );
         }
+        
         //エラーの場合お問い合わせページに戻る
         return $this->render(
             'Inquiry/index.html.twig',
