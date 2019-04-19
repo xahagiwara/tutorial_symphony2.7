@@ -133,19 +133,44 @@ class appDevDebugProjectContainerUrlMatcher extends Symfony\Bundle\FrameworkBund
         }
 
         if (0 === strpos($pathinfo, '/admin')) {
-            // app_admininquirylist_index
-            if ('/admin/inquiry' === rtrim($pathinfo, '/')) {
-                if ('/' === substr($pathinfo, -1)) {
-                    // no-op
-                } elseif (!in_array($this->context->getMethod(), array('HEAD', 'GET'))) {
-                    goto not_app_admininquirylist_index;
-                } else {
-                    return $this->redirect($rawPathinfo.'/', 'app_admininquirylist_index');
-                }
+            if (0 === strpos($pathinfo, '/admin/inquiry')) {
+                // app_admininquiryedit_input
+                if (preg_match('#^/admin/inquiry/(?P<id>[^/]++)/edit$#sD', $pathinfo, $matches)) {
+                    if (!in_array($this->context->getMethod(), array('GET', 'HEAD'))) {
+                        $allow = array_merge($allow, array('GET', 'HEAD'));
+                        goto not_app_admininquiryedit_input;
+                    }
 
-                return array (  '_controller' => 'AppBundle\\Controller\\AdminInquiryListController::indexAction',  '_route' => 'app_admininquirylist_index',);
+                    return $this->mergeDefaults(array_replace($matches, array('_route' => 'app_admininquiryedit_input')), array (  '_controller' => 'AppBundle\\Controller\\AdminInquiryEditController::inputAction',));
+                }
+                not_app_admininquiryedit_input:
+
+                // app_admininquiryedit_inputpost
+                if (preg_match('#^/admin/inquiry/(?P<id>[^/]++)/edit$#sD', $pathinfo, $matches)) {
+                    if ($this->context->getMethod() != 'POST') {
+                        $allow[] = 'POST';
+                        goto not_app_admininquiryedit_inputpost;
+                    }
+
+                    return $this->mergeDefaults(array_replace($matches, array('_route' => 'app_admininquiryedit_inputpost')), array (  '_controller' => 'AppBundle\\Controller\\AdminInquiryEditController::inputPostAction',));
+                }
+                not_app_admininquiryedit_inputpost:
+
+                // app_admininquirylist_index
+                if ('/admin/inquiry' === rtrim($pathinfo, '/')) {
+                    if ('/' === substr($pathinfo, -1)) {
+                        // no-op
+                    } elseif (!in_array($this->context->getMethod(), array('HEAD', 'GET'))) {
+                        goto not_app_admininquirylist_index;
+                    } else {
+                        return $this->redirect($rawPathinfo.'/', 'app_admininquirylist_index');
+                    }
+
+                    return array (  '_controller' => 'AppBundle\\Controller\\AdminInquiryListController::indexAction',  '_route' => 'app_admininquirylist_index',);
+                }
+                not_app_admininquirylist_index:
+
             }
-            not_app_admininquirylist_index:
 
             // app_adminmenu_index
             if ('/admin' === rtrim($pathinfo, '/')) {
