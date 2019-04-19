@@ -77,7 +77,7 @@ class __TwigTemplate_b5d531323783224c1292a7151ef9f28bfc9b9e09e226bdc956a6e13b734
         <div class=\"row pad-row\">
             ";
         // line 19
-        echo         $this->env->getExtension('Symfony\Bridge\Twig\Extension\FormExtension')->renderer->renderBlock(($context["form"] ?? $this->getContext($context, "form")), 'form_start');
+        echo         $this->env->getExtension('Symfony\Bridge\Twig\Extension\FormExtension')->renderer->renderBlock(($context["form"] ?? $this->getContext($context, "form")), 'form_start', ["attr" => ["novalidate" => "novalidate"]]);
         echo "
             <table class=\"table\">
                 <tr>
@@ -210,7 +210,7 @@ class __TwigTemplate_b5d531323783224c1292a7151ef9f28bfc9b9e09e226bdc956a6e13b734
 <section id=\"inquiry-sec\">
     <div class=\"container\">
         <div class=\"row pad-row\">
-            {{ form_start(form) }}
+            {{ form_start(form, {'attr': {'novalidate': 'novalidate'}}) }}
             <table class=\"table\">
                 <tr>
                     <th><i class=\"fa fa-circle\"> お名前</i></th>

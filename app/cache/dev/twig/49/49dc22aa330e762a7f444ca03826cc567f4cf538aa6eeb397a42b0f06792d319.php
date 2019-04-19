@@ -66,6 +66,6 @@ class __TwigTemplate_0ddca367e6adc415b21695f47446242749e73c33902244cfeac2b0296d2
     public function getSourceContext()
     {
         return new Source("<h2>お知らせ</h2>
-<p>{{  information }}</p>", "Common/infomation.html.twig", "/Users/xearts/Desktop/Hagiwara Shion/tutorial_symphony2.7/app/Resources/views/Common/infomation.html.twig");
+<p>{{ information }}</p>", "Common/infomation.html.twig", "/Users/xearts/Desktop/Hagiwara Shion/tutorial_symphony2.7/app/Resources/views/Common/infomation.html.twig");
     }
 }
