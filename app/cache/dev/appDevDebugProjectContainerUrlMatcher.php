@@ -199,7 +199,7 @@ class appDevDebugProjectContainerUrlMatcher extends Symfony\Bundle\FrameworkBund
         }
 
         // app_toppage_index
-        if ('' === rtrim($pathinfo, '/')) {
+        if ('/home' === rtrim($pathinfo, '/')) {
             if ('/' === substr($pathinfo, -1)) {
                 // no-op
             } elseif (!in_array($this->context->getMethod(), array('HEAD', 'GET'))) {

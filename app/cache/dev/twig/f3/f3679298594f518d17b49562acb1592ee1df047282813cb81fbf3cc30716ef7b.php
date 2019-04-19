@@ -18,10 +18,17 @@ class __TwigTemplate_b67b562e171a9bebd8a7422df49b11c0415c7ba5843303d568f1da1eef6
     {
         parent::__construct($env);
 
-        $this->parent = false;
-
+        // line 1
+        $this->parent = $this->loadTemplate("layout.html.twig", "Concert/index.html.twig", 1);
         $this->blocks = [
+            'title' => [$this, 'block_title'],
+            'body' => [$this, 'block_body'],
         ];
+    }
+
+    protected function doGetParent(array $context)
+    {
+        return "layout.html.twig";
     }
 
     protected function doDisplay(array $context, array $blocks = [])
@@ -29,82 +36,91 @@ class __TwigTemplate_b67b562e171a9bebd8a7422df49b11c0415c7ba5843303d568f1da1eef6
         $__internal_319393461309892924ff6e74d6d6e64287df64b63545b994e100d4ab223aed02 = $this->env->getExtension("Symfony\\Bridge\\Twig\\Extension\\ProfilerExtension");
         $__internal_319393461309892924ff6e74d6d6e64287df64b63545b994e100d4ab223aed02->enter($__internal_319393461309892924ff6e74d6d6e64287df64b63545b994e100d4ab223aed02_prof = new \Twig\Profiler\Profile($this->getTemplateName(), "template", "Concert/index.html.twig"));
 
-        // line 1
-        echo "<html>
-<head>
-</head>
-<body>
-    <div>
-        <h1>公開講演</h1>
-        <ul>
-            <!--　for文：for 変数 in 代入元変数-->
-            ";
-        // line 9
+        $this->parent->display($context, array_merge($this->blocks, $blocks));
+        
+        $__internal_319393461309892924ff6e74d6d6e64287df64b63545b994e100d4ab223aed02->leave($__internal_319393461309892924ff6e74d6d6e64287df64b63545b994e100d4ab223aed02_prof);
+
+    }
+
+    // line 3
+    public function block_title($context, array $blocks = [])
+    {
+        $__internal_319393461309892924ff6e74d6d6e64287df64b63545b994e100d4ab223aed02 = $this->env->getExtension("Symfony\\Bridge\\Twig\\Extension\\ProfilerExtension");
+        $__internal_319393461309892924ff6e74d6d6e64287df64b63545b994e100d4ab223aed02->enter($__internal_319393461309892924ff6e74d6d6e64287df64b63545b994e100d4ab223aed02_prof = new \Twig\Profiler\Profile($this->getTemplateName(), "block", "title"));
+
+        echo "公演情報";
+        $this->displayParentBlock("title", $context, $blocks);
+        
+        $__internal_319393461309892924ff6e74d6d6e64287df64b63545b994e100d4ab223aed02->leave($__internal_319393461309892924ff6e74d6d6e64287df64b63545b994e100d4ab223aed02_prof);
+
+    }
+
+    // line 5
+    public function block_body($context, array $blocks = [])
+    {
+        $__internal_319393461309892924ff6e74d6d6e64287df64b63545b994e100d4ab223aed02 = $this->env->getExtension("Symfony\\Bridge\\Twig\\Extension\\ProfilerExtension");
+        $__internal_319393461309892924ff6e74d6d6e64287df64b63545b994e100d4ab223aed02->enter($__internal_319393461309892924ff6e74d6d6e64287df64b63545b994e100d4ab223aed02_prof = new \Twig\Profiler\Profile($this->getTemplateName(), "block", "body"));
+
+        // line 6
+        echo "<section id=\"home\" class=\"head-main-img\">
+    <div class=\"container\">
+        <div class=\"row text-center pad-row\">
+            <div class=\"col-md-10 col-md-offset-1\">
+                <h1><span class=\"back-light\">公演情報</span></h1>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section id=\"port-sec\">
+    <div class=\"container\">
+        <div class=\"row pad-row\" >
+            <div class=\"col-md-12 col-sm-12\" >
+                <ul class=\"portfolio-items col-3\">
+                    ";
+        // line 21
         $context['_parent'] = $context;
         $context['_seq'] = twig_ensure_traversable(($context["concertList"] ?? $this->getContext($context, "concertList")));
-        $context['loop'] = [
-          'parent' => $context['_parent'],
-          'index0' => 0,
-          'index'  => 1,
-          'first'  => true,
-        ];
-        if (is_array($context['_seq']) || (is_object($context['_seq']) && $context['_seq'] instanceof \Countable)) {
-            $length = count($context['_seq']);
-            $context['loop']['revindex0'] = $length - 1;
-            $context['loop']['revindex'] = $length;
-            $context['loop']['length'] = $length;
-            $context['loop']['last'] = 1 === $length;
-        }
         foreach ($context['_seq'] as $context["_key"] => $context["concertInfo"]) {
-            // line 10
-            echo "                <li>
-                    ";
-            // line 11
-            echo twig_escape_filter($this->env, $this->getAttribute($context["loop"], "index", []), "html", null, true);
-            echo "
-                    ";
-            // line 12
-            echo twig_escape_filter($this->env, $this->getAttribute($context["concertInfo"], "data", []), "html", null, true);
-            echo "
-                    ";
-            // line 13
+            // line 22
+            echo "                    <li class=\"portfolio-item\">
+                        <div class=\"item-main\">
+                            <h5>";
+            // line 24
+            echo twig_escape_filter($this->env, $this->getAttribute($context["concertInfo"], "date", []), "html", null, true);
+            echo "<br />";
             echo twig_escape_filter($this->env, $this->getAttribute($context["concertInfo"], "place", []), "html", null, true);
-            echo "
-                    <!-- if文：if 判定式-->
-                    ";
-            // line 15
-            if (($this->getAttribute($context["concertInfo"], "available", []) == "true")) {
-                // line 16
-                echo "                        （予約可能）
-                    ";
-            } else {
-                // line 18
-                echo "                        （満席）
-                    ";
-            }
-            // line 20
-            echo "                    ";
+            echo "</h5>
+                            <ul class=\"plan\">
+                                <li>";
+            // line 26
+            echo twig_escape_filter($this->env, $this->getAttribute($context["concertInfo"], "date", []), "html", null, true);
+            echo " ";
             echo twig_escape_filter($this->env, $this->getAttribute($context["concertInfo"], "time", []), "html", null, true);
-            echo "開演
-                </li>
-            ";
-            ++$context['loop']['index0'];
-            ++$context['loop']['index'];
-            $context['loop']['first'] = false;
-            if (isset($context['loop']['length'])) {
-                --$context['loop']['revindex0'];
-                --$context['loop']['revindex'];
-                $context['loop']['last'] = 0 === $context['loop']['revindex0'];
+            echo " 開演</li>
+                                <li>";
+            // line 27
+            if (($this->getAttribute($context["concertInfo"], "available", []) != true)) {
+                echo "満席";
+            } else {
+                echo "予約可能";
             }
+            echo "</li>
+                            </ul>
+                        </div>
+                    </li>
+                    ";
         }
         $_parent = $context['_parent'];
         unset($context['_seq'], $context['_iterated'], $context['_key'], $context['concertInfo'], $context['_parent'], $context['loop']);
         $context = array_intersect_key($context, $_parent) + $_parent;
-        // line 23
-        echo "        </ul>
-    </div>    
-</body>
-</html>";
+        // line 32
+        echo "                </ul>
+            </div>
+        </div>
+    </div>
+</section>
+";
         
         $__internal_319393461309892924ff6e74d6d6e64287df64b63545b994e100d4ab223aed02->leave($__internal_319393461309892924ff6e74d6d6e64287df64b63545b994e100d4ab223aed02_prof);
 
@@ -122,7 +138,7 @@ class __TwigTemplate_b67b562e171a9bebd8a7422df49b11c0415c7ba5843303d568f1da1eef6
 
     public function getDebugInfo()
     {
-        return array (  104 => 23,  86 => 20,  82 => 18,  78 => 16,  76 => 15,  71 => 13,  67 => 12,  63 => 11,  60 => 10,  43 => 9,  33 => 1,);
+        return array (  118 => 32,  103 => 27,  97 => 26,  90 => 24,  86 => 22,  82 => 21,  65 => 6,  59 => 5,  46 => 3,  22 => 1,);
     }
 
     /** @deprecated since 1.27 (to be removed in 2.0). Use getSourceContext() instead */
@@ -135,31 +151,43 @@ class __TwigTemplate_b67b562e171a9bebd8a7422df49b11c0415c7ba5843303d568f1da1eef6
 
     public function getSourceContext()
     {
-        return new Source("<html>
-<head>
-</head>
-<body>
-    <div>
-        <h1>公開講演</h1>
-        <ul>
-            <!--　for文：for 変数 in 代入元変数-->
-            {% for concertInfo in concertList %}
-                <li>
-                    {{ loop.index }}
-                    {{ concertInfo.data }}
-                    {{ concertInfo.place }}
-                    <!-- if文：if 判定式-->
-                    {% if concertInfo.available == 'true' %}
-                        （予約可能）
-                    {% else %}
-                        （満席）
-                    {% endif %}
-                    {{ concertInfo.time }}開演
-                </li>
-            {% endfor %}
-        </ul>
-    </div>    
-</body>
-</html>", "Concert/index.html.twig", "/Users/xearts/Desktop/Hagiwara Shion/tutorial_symphony2.7/app/Resources/views/Concert/index.html.twig");
+        return new Source("{% extends \"layout.html.twig\" %}
+
+{% block title %}公演情報{{ parent() }}{% endblock %}
+
+{% block body %}
+<section id=\"home\" class=\"head-main-img\">
+    <div class=\"container\">
+        <div class=\"row text-center pad-row\">
+            <div class=\"col-md-10 col-md-offset-1\">
+                <h1><span class=\"back-light\">公演情報</span></h1>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section id=\"port-sec\">
+    <div class=\"container\">
+        <div class=\"row pad-row\" >
+            <div class=\"col-md-12 col-sm-12\" >
+                <ul class=\"portfolio-items col-3\">
+                    {% for concertInfo in concertList %}
+                    <li class=\"portfolio-item\">
+                        <div class=\"item-main\">
+                            <h5>{{ concertInfo.date }}<br />{{ concertInfo.place }}</h5>
+                            <ul class=\"plan\">
+                                <li>{{ concertInfo.date }} {{ concertInfo.time }} 開演</li>
+                                <li>{% if concertInfo.available != true %}満席{% else %}予約可能{% endif %}</li>
+                            </ul>
+                        </div>
+                    </li>
+                    {% endfor %}
+                </ul>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}
+", "Concert/index.html.twig", "/Users/xearts/Desktop/Hagiwara Shion/tutorial_symphony2.7/app/Resources/views/Concert/index.html.twig");
     }
 }

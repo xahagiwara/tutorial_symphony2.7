@@ -6,27 +6,32 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Symfony\Component\HttpFoundation\Request;
+use AppBundle\Entity\Inquiry;
 
 //コントローラー全体で基準とするURL
 /**
  * @Route("/inquiry")
  */
-class InquiryController extends Controller{
+class InquiryController extends Controller {
     //HTTｐメソッドを限定する
     /**
      * @Route("/")
      * @Method("get")
      */
-    public function indexAction(){
+    public function indexAction()
+    {
         //テンプレートに渡す
-        return $this->render('Inquiry/index.html.twig',
-        ['form' => $this->createInquiryForm()->createView()]);   //簡易的なフォームの作成 {{ form(変数)　}} で読み出す
+        return $this->render(
+            'Inquiry/index.html.twig',
+            ['form' => $this->createInquiryForm()->createView()]
+        );   //簡易的なフォームの作成 {{ form(変数) }} で読み出す
     }
 
     /*各要素の定義メソッド*/
-    private function createInquiryForm(){
+    private function createInquiryForm()
+    {
         //各要素の設定
-        return $this->createFormBuilder()
+        return $this->createFormBuilder(new Inquiry())
             ->add('name', 'text')
             ->add('email', 'text')
             ->add('tel', 'text', [
@@ -50,22 +55,26 @@ class InquiryController extends Controller{
     /**
      * @Route("/complete")
      */
-    public function completeAction(){
+    public function completeAction()
+    {
         return $this->render('Inquiry/complete.html.twig');
     }
 
-    /*フォーム送信時のアクションメソッド*/
     /**
      * @Route("/")
      * @Method("post")
      */
-    public function indexPostAction(Request $request){
+    public function indexPostAction(Request $request)
+    {
         $form = $this->createInquiryForm();
         $form->handleRequest($request);
-        //フォームの有効性をチェック
-        if ($form->isValid()) {
-            $data = $form->getData();
+        if ($form->isValid())
+        {
+            $inquiry = $form->getData();
 
+            $em = $this->getDoctrine()->getManager();
+            $em->persist($inquiry);
+            $em->flush();
             $message = \Swift_Message::newInstance()
                 ->setSubject('Webサイトからのお問い合わせ')
                 ->setFrom('webmaster@example.com')
@@ -73,15 +82,12 @@ class InquiryController extends Controller{
                 ->setBody(
                     $this->renderView(
                         'mail/inquiry.txt.twig',
-                        ['data' => $data]
+                        ['data' => $inquiry]
                     )
                 );
-
             $this->get('mailer')->send($message);
-
             return $this->redirect(
-                $this->generateUrl('app_inquiry_complete')
-            );
+                $this->generateUrl('app_inquiry_complete'));
         }
         
         //エラーの場合お問い合わせページに戻る
