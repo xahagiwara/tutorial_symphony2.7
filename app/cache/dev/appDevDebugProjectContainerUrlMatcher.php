@@ -132,6 +132,20 @@ class appDevDebugProjectContainerUrlMatcher extends Symfony\Bundle\FrameworkBund
 
         }
 
+        // app_adminmenu_index
+        if ('/admin' === rtrim($pathinfo, '/')) {
+            if ('/' === substr($pathinfo, -1)) {
+                // no-op
+            } elseif (!in_array($this->context->getMethod(), array('HEAD', 'GET'))) {
+                goto not_app_adminmenu_index;
+            } else {
+                return $this->redirect($rawPathinfo.'/', 'app_adminmenu_index');
+            }
+
+            return array (  '_controller' => 'AppBundle\\Controller\\AdminMenuController::indexAction',  '_route' => 'app_adminmenu_index',);
+        }
+        not_app_adminmenu_index:
+
         // app_concert_index
         if ('/concert' === rtrim($pathinfo, '/')) {
             if ('/' === substr($pathinfo, -1)) {
