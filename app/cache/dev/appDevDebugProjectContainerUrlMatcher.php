@@ -157,18 +157,9 @@ class appDevDebugProjectContainerUrlMatcher extends Symfony\Bundle\FrameworkBund
                 not_app_admininquiryedit_inputpost:
 
                 // app_admininquirylist_index
-                if ('/admin/inquiry' === rtrim($pathinfo, '/')) {
-                    if ('/' === substr($pathinfo, -1)) {
-                        // no-op
-                    } elseif (!in_array($this->context->getMethod(), array('HEAD', 'GET'))) {
-                        goto not_app_admininquirylist_index;
-                    } else {
-                        return $this->redirect($rawPathinfo.'/', 'app_admininquirylist_index');
-                    }
-
+                if ('/admin/inquiry/search' === $pathinfo) {
                     return array (  '_controller' => 'AppBundle\\Controller\\AdminInquiryListController::indexAction',  '_route' => 'app_admininquirylist_index',);
                 }
-                not_app_admininquirylist_index:
 
             }
 
