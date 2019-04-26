@@ -1,4 +1,5 @@
 <?php
+
 namespace AppBundle\DataFixtures\ORM;
 
 use Doctrine\Common\DataFixtures\FixtureInterface;
@@ -13,6 +14,7 @@ class LoadInquiryData implements FixtureInterface, ContainerAwareInterface
      * @var ContainerInterface
      */
     private $container;
+
     /**
      * {@inheritDoc}
      */
@@ -20,6 +22,7 @@ class LoadInquiryData implements FixtureInterface, ContainerAwareInterface
     {
         $this->container = $container;
     }
+
     /**
      * {@inheritDoc}
      */
