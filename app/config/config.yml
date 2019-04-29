@@ -34,6 +34,8 @@ framework:
 twig:
     debug: '%kernel.debug%'
     strict_variables: '%kernel.debug%'
+    globals:
+        url_base: %url_base%
 
 # Assetic Configuration
 assetic:
@@ -76,3 +78,13 @@ swiftmailer:
     host:      ~
     username:  shionn35@gmail.com
     password:  shionn35
+
+fos_rest:
+    view:
+        view_response_listener: force
+
+nelmio_cors:
+    paths:
+        '^/api/':
+            allow_origin: []
+            allow_methods: ['GET']
