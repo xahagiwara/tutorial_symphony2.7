@@ -78,3 +78,7 @@ swiftmailer:
     host:      ~
     username:  shionn35@gmail.com
     password:  shionn35
+
+fos_rest:
+    view:
+        view_response_listener: force

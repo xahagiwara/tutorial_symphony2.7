@@ -35,3 +35,5 @@ assetic:
 
 swiftmailer:
     delivery_address: shionn35@gmail.com
+
+nelmio_api_doc: ~
