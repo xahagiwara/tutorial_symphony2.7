@@ -7,3 +7,5 @@ bin/
 .idea/
 Composer.lock
 .DS_Store
+composer.phar
+phpunit.phar
