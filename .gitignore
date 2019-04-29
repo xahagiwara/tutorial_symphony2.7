@@ -5,4 +5,5 @@ vendor
 app/config/parameters.yml
 bin/
 .idea/
-app/logs
+Composer.lock
+.DS_Store
