@@ -18,6 +18,7 @@
         "doctrine/orm": "^2.4.8",
         "friendsofsymfony/rest-bundle": "~2.1.0",
         "incenteev/composer-parameter-handler": "~2.0",
+        "jms/di-extra-bundle": "^1.9",
         "jms/serializer-bundle": "^2.4",
         "league/csv": "^8.2",
         "nelmio/cors-bundle": "^1.5",
