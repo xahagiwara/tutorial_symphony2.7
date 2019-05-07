@@ -31,6 +31,8 @@ class AppKernel extends Kernel
             $bundles[] = new FOS\RestBundle\FOSRestBundle();
             $bundles[] = new JMS\SerializerBundle\JMSSerializerBundle();
             $bundles[] = new Nelmio\ApiDocBundle\NelmioApiDocBundle();
+            $bundles[] = new Hautelook\AliceBundle\HautelookAliceBundle();
+            $bundles[] = new Liip\FunctionalTestBundle\LiipFunctionalTestBundle();
         }
 
         return $bundles;
