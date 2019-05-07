@@ -20,7 +20,7 @@ class InquiryRepository extends \Doctrine\ORM\EntityRepository
             ->orWhere('i.email LIKE :keyword')
             ->orderBy('i.id', 'DESC')
             ->setParameters([
-                ':keyword' =>'%'.$keyword.'%'
+                ':keyword' => '%' . $keyword . '%'
             ])
             ->getQuery();
         return new ArrayCollection($query->getResult());
@@ -33,10 +33,9 @@ class InquiryRepository extends \Doctrine\ORM\EntityRepository
             ->orWhere('i.processStatus is null')
             ->orderBy('i.id', 'ASC')
             ->setParameters([
-                ':provessStatus' => '0'
+                ':processStatus' => '0'
             ])
             ->getQuery();
-
         return $query->execute();
     }
 }
