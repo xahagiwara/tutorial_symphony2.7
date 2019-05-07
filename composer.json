@@ -31,7 +31,10 @@
         "twig/twig": "^1.0||^2.0"
     },
     "require-dev": {
+        "hautelook/alice-bundle": "0.2",
+        "liip/functional-test-bundle": "^1.10",
         "nelmio/api-doc-bundle": "^2.7.0",
+        "phpunit/phpunit": "^5.7",
         "sensio/generator-bundle": "~2.3",
         "symfony/phpunit-bridge": "~2.7"
     },
