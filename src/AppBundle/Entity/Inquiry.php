@@ -267,4 +267,11 @@ class Inquiry
     {
         return $this->processMemo;
     }
+
+    /**
+     * @param $id
+     */
+    public function setId($id){
+        $this->id = $id;
+    }
 }

@@ -25,5 +25,4 @@ class MemberCollectionTest extends \PHPUnit_Framework_TestCase
         $this->assertThat($member->getJoinedDate(), $this->equalTo('2015-01-15'),
             'joinedDateプロパティが設定されているか');
     }
-
 }
